@@ -1,4 +1,4 @@
-package com.example.udt_dip;
+package com.udt.udt_dip;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
