@@ -6,16 +6,16 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class mobile_phone {
+public class MobilePlan {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String manufacturer;
-    private String model;
+
     private String name;
-    private String usim;
-    private String description;
+
     private String price;
 
+    private String description;
 
 }
