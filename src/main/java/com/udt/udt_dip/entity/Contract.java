@@ -26,4 +26,11 @@ public class Contract {
 
     private String finalCommunicationExpense;
 
+    public void updateMobilePlan(String targetMobilePlanId) {
+        this.mobilePlanId = targetMobilePlanId;
+    }
+
+    public void updateFinalCommunicationExpense(String targetMobilePlanId) {
+        this.mobilePlanId = targetMobilePlanId;
+    }
 }
