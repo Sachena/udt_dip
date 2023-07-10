@@ -1,3 +1,3 @@
 # ERD
 
-![DIP_sample.png](..%2F..%2F..%2FDownloads%2FDIP_sample.png)
+![DIP_sample](https://github.com/Sachena/udt_dip/assets/58217856/111b251d-932c-4aae-be3c-fc617db91c35)
