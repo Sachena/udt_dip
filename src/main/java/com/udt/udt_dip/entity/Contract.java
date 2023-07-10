@@ -12,9 +12,6 @@ public class Contract {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToMany(mappedBy = "contract")
-    private List<ContractHistory> contractHistories = new ArrayList<>();
-
     private String phoneNumber;
 
     private LocalDateTime firstContractDate;
@@ -26,5 +23,7 @@ public class Contract {
     private String mobilePlanId;
 
     private LocalDateTime contractChangeDatetime;
+
+    private String finalCommunicationExpense;
 
 }
