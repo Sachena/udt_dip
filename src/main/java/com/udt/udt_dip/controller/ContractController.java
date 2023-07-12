@@ -1,9 +1,12 @@
 package com.udt.udt_dip.controller;
 
 
+import com.udt.udt_dip.dto.RetrieveContractRequest;
 import com.udt.udt_dip.dto.UpdateMobilePlanRequest;
+import com.udt.udt_dip.entity.Contract;
 import com.udt.udt_dip.service.ContractService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,6 +16,12 @@ import org.springframework.web.bind.annotation.RestController;
 public class ContractController {
 
     private final ContractService contractService;
+
+
+    @GetMapping("/v1/contract")
+    public Contract retrieveContract(RetrieveContractRequest retrieveContractRequest){
+        return contractService.retrieveContract(retrieveContractRequest);
+    }
 
     @PostMapping("/v1/contract")
     public void updateMobilePlan(UpdateMobilePlanRequest updateMobilePlanRequest){

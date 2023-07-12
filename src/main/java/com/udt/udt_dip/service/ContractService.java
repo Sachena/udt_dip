@@ -1,5 +1,6 @@
 package com.udt.udt_dip.service;
 
+import com.udt.udt_dip.dto.RetrieveContractRequest;
 import com.udt.udt_dip.dto.UpdateMobilePlanRequest;
 import com.udt.udt_dip.entity.Contract;
 import com.udt.udt_dip.repository.ContractRepository;
@@ -27,5 +28,9 @@ public class ContractService {
         targetContract.updateFinalCommunicationExpense(updateMobilePlanRequest.getTargetMobilePlanId());
 
 
+    }
+
+    public Contract retrieveContract(RetrieveContractRequest retrieveContractRequest) {
+        return contractRepository.findById(Long.valueOf(retrieveContractRequest.getTargetContractId())).orElse(null);
     }
 }
