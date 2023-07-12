@@ -1,12 +1,9 @@
 package com.udt.udt_dip.entity;
 
-import lombok.Data;
 import lombok.Getter;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Getter
@@ -28,14 +25,14 @@ public class Contract {
 
     private LocalDateTime contractChangeDatetime;
 
-    private String finalCommunicationExpense;
+    private String communicationExpense;
 
     public void updateMobilePlan(String targetMobilePlanId) {
         this.mobilePlanId = targetMobilePlanId;
         this.contractChangeDatetime = LocalDateTime.now();
     }
 
-    public void updateFinalCommunicationExpense(String targetMobilePlanId) {
-        this.finalCommunicationExpense = targetMobilePlanId;
+    public void updateCommunicationExpense(String targetMobilePlanId) {
+        this.communicationExpense = targetMobilePlanId;
     }
 }

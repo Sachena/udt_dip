@@ -10,8 +10,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
 
 
-import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
@@ -58,7 +56,7 @@ class ContractServiceTest {
 
         assertEquals(String.valueOf(targetContract.getId()), "1");
         assertEquals(String.valueOf(targetContract.getMobilePlanId()) , "2");
-        System.out.println("targetContract.getFinalCommunicationExpense() = " + targetContract.getFinalCommunicationExpense());
+        System.out.println("targetContract.getCommunicationExpense() = " + targetContract.getCommunicationExpense());
 
     }
 }
