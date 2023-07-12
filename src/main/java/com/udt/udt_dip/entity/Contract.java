@@ -35,4 +35,7 @@ public class Contract {
     public void updateCommunicationExpense(String targetMobilePlanId) {
         this.communicationExpense = targetMobilePlanId;
     }
+
+
+
 }
