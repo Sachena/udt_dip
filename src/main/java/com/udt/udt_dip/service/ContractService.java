@@ -34,6 +34,9 @@ public class ContractService {
         // 요금제 존재여부 => 요금제 정보 조회
         MobilePlan finalMobilePlan = mobilePlanRepository.findById(Long.valueOf(updateMobilePlanRequest.getTargetMobilePlanId())).orElseThrow(() -> new RuntimeException("존재하지 않는 요금제 정보입니다."));
 
+        // 계약에서 요금제 정보 변경
+        targetContract.updateMobilePlan(String.valueOf(finalMobilePlan.getId()));
+
 
         //할인 정보 조회 Discount targetDiscount = discountRepository.findById()
         //부가서비스 정보 조회 Additional targetAdditional = additionalRepository.findById()
@@ -42,11 +45,10 @@ public class ContractService {
         //요금제 계산 method 원래는 calculatePrice(finalMobilePlan.getPrice(), targetDiscount, targetAdditional)
         String finalPrice = calculatePrice(finalMobilePlan.getPrice());
 
-        // 계약에서 요금제 정보 변경
-        targetContract.updateMobilePlan(finalPrice);
+
 
         // 통신비 (최종 통신비) 변경
-        targetContract.updateCommunicationExpense(finalMobilePlan.getPrice());
+        targetContract.updateCommunicationExpense(finalPrice);
     }
 
     private String calculatePrice(String price){
