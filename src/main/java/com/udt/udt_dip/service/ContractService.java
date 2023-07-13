@@ -72,23 +72,13 @@ public class ContractService {
         // 계약에서 요금제 정보 변경
         targetContract.updateMobilePlan(String.valueOf(finalMobilePlan.getId()));
 
-        //할인 정보 조회 Discount targetDiscount = discountRepository.findById()
-        //부가서비스 정보 조회 Additional targetAdditional = additionalRepository.findById()
-
-        //요금제 계산 method 원래는 calculatePrice(finalMobilePlan.getPrice(), targetDiscount, targetAdditional)
-        String finalPrice = calculatePrice(finalMobilePlan.getPrice());
+        //요금제 계산
+        String finalPrice = finalMobilePlan.calculatePrice();
 
         // 통신비 (최종 통신비) 변경
         targetContract.updateCommunicationExpense(finalPrice);
     }
 
-    private String calculatePrice(String price){
-        //String price = targetDiscount.calculatePrice(price);
-        //price = targetAdditional.calculatePrice(price);
-
-        return price;
-
-    }
 
 
 }

@@ -21,4 +21,7 @@ public class MobilePlan {
 
     private String description;
 
+    public String calculatePrice() {
+        return this.getPrice();
+    }
 }
