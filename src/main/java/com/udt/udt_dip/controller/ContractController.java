@@ -2,6 +2,7 @@ package com.udt.udt_dip.controller;
 
 
 import com.udt.udt_dip.dto.RetrieveContractRequest;
+import com.udt.udt_dip.dto.RetrieveContractResponse;
 import com.udt.udt_dip.dto.UpdateMobilePlanRequest;
 import com.udt.udt_dip.entity.Contract;
 import com.udt.udt_dip.service.ContractService;
@@ -17,9 +18,8 @@ public class ContractController {
 
     private final ContractService contractService;
 
-
     @GetMapping("/v1/contract")
-    public Contract retrieveContract(RetrieveContractRequest retrieveContractRequest){
+    public RetrieveContractResponse retrieveContract(RetrieveContractRequest retrieveContractRequest){
         return contractService.retrieveContract(retrieveContractRequest);
     }
 
