@@ -79,5 +79,6 @@ public class ContractService {
 
         // 통신비 (최종 통신비) 변경
         contract.updateCommunicationExpense(calculatedPrice);
+
     }
 }
