@@ -1,15 +1,17 @@
 package com.udt.udt_dip.mobilephone.repository;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Getter
 @Entity
-public class MobilePhone {
+@AllArgsConstructor
+@NoArgsConstructor
+@Table(name="mobile_phone")
+public class MobilePhoneEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

@@ -18,18 +18,18 @@ public class Contract {
 
     private LocalDateTime firstContractDate;
 
-    private Long customerId;
+    private String customerId;
 
-    private Long mobilePhoneId;
+    private String mobilePhoneId;
 
-    private Long mobilePlanId;
+    private String mobilePlanId;
 
     private LocalDateTime contractChangeDatetime;
 
     private String communicationExpense;
 
     public void updateMobilePlan(String targetMobilePlanId) {
-        this.mobilePlanId = NumberUtils.toLong(targetMobilePlanId);
+        this.mobilePlanId = targetMobilePlanId;
         this.contractChangeDatetime = LocalDateTime.now();
     }
 

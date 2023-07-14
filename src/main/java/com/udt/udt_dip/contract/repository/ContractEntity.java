@@ -23,11 +23,11 @@ public class ContractEntity {
 
     private LocalDateTime firstContractDate;
 
-    private Long customerId;
+    private String customerId;
 
-    private Long mobilePhoneId;
+    private String mobilePhoneId;
 
-    private Long mobilePlanId;
+    private String mobilePlanId;
 
     private LocalDateTime contractChangeDatetime;
 
