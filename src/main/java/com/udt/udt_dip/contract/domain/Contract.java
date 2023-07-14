@@ -1,17 +1,17 @@
-package com.udt.udt_dip.contract.repository;
+package com.udt.udt_dip.contract.domain;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import org.apache.commons.lang3.math.NumberUtils;
 
-import javax.persistence.*;
 import java.time.LocalDateTime;
 
-@Entity
 @Getter
+@AllArgsConstructor
+@NoArgsConstructor
 public class Contract {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String phoneNumber;
@@ -36,7 +36,5 @@ public class Contract {
     public void updateCommunicationExpense(String targetMobilePlanId) {
         this.communicationExpense = targetMobilePlanId;
     }
-
-
 
 }

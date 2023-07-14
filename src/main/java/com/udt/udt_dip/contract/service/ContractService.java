@@ -1,9 +1,10 @@
 package com.udt.udt_dip.contract.service;
 
+import com.udt.udt_dip.contract.domain.Contract;
 import com.udt.udt_dip.contract.dto.RetrieveContractRequest;
 import com.udt.udt_dip.contract.dto.RetrieveContractResponse;
 import com.udt.udt_dip.mobileplan.dto.UpdateMobilePlanRequest;
-import com.udt.udt_dip.contract.repository.Contract;
+import com.udt.udt_dip.contract.repository.ContractEntity;
 import com.udt.udt_dip.customer.repository.Customer;
 import com.udt.udt_dip.mobilephone.repository.MobilePhone;
 import com.udt.udt_dip.mobileplan.repository.MobilePlan;
@@ -33,8 +34,7 @@ public class ContractService {
 
     public RetrieveContractResponse retrieveContract(RetrieveContractRequest retrieveContractRequest) {
 
-        Contract contract = contractRepository.findById(NumberUtils.toLong(retrieveContractRequest.getContractId()))
-                .orElseThrow(() -> new NoContractException("존재하지 않는 계약 정보입니다."));
+        Contract contract = contractRepository.findById(retrieveContractRequest.getContractId());
 
         Customer customer = customerRepository.findById(contract.getCustomerId())
                 .orElseThrow(() -> new NoCustomerException("고객 정보가 존재하지 않습니다."));
@@ -64,8 +64,7 @@ public class ContractService {
     public void updateMobilePlan(UpdateMobilePlanRequest updateMobilePlanRequest) {
 
         // 변경할 계약 정보 가져오기
-        Contract contract = contractRepository.findById(NumberUtils.toLong(updateMobilePlanRequest.getTargetContractId()))
-                .orElseThrow(() -> new RuntimeException("존재하지 않는 계약 정보입니다."));
+        Contract contract = contractRepository.findById(updateMobilePlanRequest.getTargetContractId());
 
         // 요금제 존재여부 => 요금제 정보 조회
         MobilePlan mobilePlan = mobilePlanRepository.findById(NumberUtils.toLong(updateMobilePlanRequest.getTargetMobilePlanId()))
@@ -79,5 +78,7 @@ public class ContractService {
 
         // 통신비 (최종 통신비) 변경
         contract.updateCommunicationExpense(calculatedPrice);
+
+        contractRepository.save(contract);
     }
 }
