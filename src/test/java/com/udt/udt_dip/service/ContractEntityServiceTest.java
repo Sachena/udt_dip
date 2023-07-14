@@ -38,8 +38,8 @@ class ContractEntityServiceTest {
         RetrieveContractResponse retrieveContractResponse = contractService.retrieveContract(retrieveContractRequest);
 
         //then
-        assertEquals(ObjectUtils.toString(retrieveContractResponse.getContractId()), "1");
-        assertEquals(ObjectUtils.toString(retrieveContractResponse.getCustomerName()) , "1");
+        assertEquals(retrieveContractResponse.getContractId(), "1");
+        assertEquals(retrieveContractResponse.getCustomerName() , "테스터");
 
 
     }
