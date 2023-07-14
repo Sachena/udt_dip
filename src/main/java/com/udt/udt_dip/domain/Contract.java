@@ -1,6 +1,7 @@
 package com.udt.udt_dip.domain;
 
 import lombok.Getter;
+import org.apache.commons.lang3.math.NumberUtils;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -28,7 +29,7 @@ public class Contract {
     private String communicationExpense;
 
     public void updateMobilePlan(String targetMobilePlanId) {
-        this.mobilePlanId = Long.valueOf(targetMobilePlanId);
+        this.mobilePlanId = NumberUtils.toLong(targetMobilePlanId);
         this.contractChangeDatetime = LocalDateTime.now();
     }
 
