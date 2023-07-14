@@ -3,12 +3,11 @@ package com.udt.udt_dip.contract.service;
 import com.udt.udt_dip.contract.domain.Contract;
 import com.udt.udt_dip.contract.dto.RetrieveContractRequest;
 import com.udt.udt_dip.contract.dto.RetrieveContractResponse;
+import com.udt.udt_dip.customer.domain.Customer;
 import com.udt.udt_dip.mobileplan.dto.UpdateMobilePlanRequest;
-import com.udt.udt_dip.contract.repository.ContractEntity;
-import com.udt.udt_dip.customer.repository.Customer;
+import com.udt.udt_dip.customer.repository.CustomerEntity;
 import com.udt.udt_dip.mobilephone.repository.MobilePhone;
 import com.udt.udt_dip.mobileplan.repository.MobilePlan;
-import com.udt.udt_dip.exception.NoContractException;
 import com.udt.udt_dip.exception.NoCustomerException;
 import com.udt.udt_dip.exception.NoMobilePhoneException;
 import com.udt.udt_dip.exception.NoMobilePlanException;
@@ -18,6 +17,7 @@ import com.udt.udt_dip.mobilephone.repository.MobilePhoneRepository;
 import com.udt.udt_dip.mobileplan.repository.MobilePlanRepository;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.ObjectUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.math.NumberUtils;
 import org.springframework.stereotype.Service;
 
@@ -36,8 +36,7 @@ public class ContractService {
 
         Contract contract = contractRepository.findById(retrieveContractRequest.getContractId());
 
-        Customer customer = customerRepository.findById(contract.getCustomerId())
-                .orElseThrow(() -> new NoCustomerException("고객 정보가 존재하지 않습니다."));
+        Customer customer = customerRepository.findById(ObjectUtils.toString(contract.getCustomerId()));
 
         MobilePhone mobilePhone = mobilePhoneRepository.findById(contract.getMobilePhoneId())
                 .orElseThrow(() -> new NoMobilePhoneException("휴대폰 단말 정보가 존재하지 않습니다."));
