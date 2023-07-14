@@ -1,9 +1,10 @@
 package com.udt.udt_dip.service;
 
-import com.udt.udt_dip.dto.RetrieveContractRequest;
-import com.udt.udt_dip.dto.UpdateMobilePlanRequest;
-import com.udt.udt_dip.repository.Contract;
-import com.udt.udt_dip.repository.ContractRepository;
+import com.udt.udt_dip.contract.service.ContractService;
+import com.udt.udt_dip.contract.dto.RetrieveContractRequest;
+import com.udt.udt_dip.mobileplan.dto.UpdateMobilePlanRequest;
+import com.udt.udt_dip.contract.repository.Contract;
+import com.udt.udt_dip.contract.repository.ContractRepository;
 import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.math.NumberUtils;
 import org.junit.jupiter.api.Test;

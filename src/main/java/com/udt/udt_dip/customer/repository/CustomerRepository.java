@@ -1,8 +1,8 @@
-package com.udt.udt_dip.repository;
+package com.udt.udt_dip.customer.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface MobilePhoneRepository extends JpaRepository<MobilePhone, Long> {
+public interface CustomerRepository extends JpaRepository<Customer, Long> {
 }

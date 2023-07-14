@@ -1,4 +1,4 @@
-package com.udt.udt_dip.repository;
+package com.udt.udt_dip.mobilephone.repository;
 
 import lombok.Getter;
 

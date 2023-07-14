@@ -1,10 +1,10 @@
-package com.udt.udt_dip.controller;
+package com.udt.udt_dip.contract.controller;
 
 
-import com.udt.udt_dip.dto.RetrieveContractRequest;
-import com.udt.udt_dip.dto.RetrieveContractResponse;
-import com.udt.udt_dip.dto.UpdateMobilePlanRequest;
-import com.udt.udt_dip.service.ContractService;
+import com.udt.udt_dip.contract.dto.RetrieveContractRequest;
+import com.udt.udt_dip.contract.dto.RetrieveContractResponse;
+import com.udt.udt_dip.mobileplan.dto.UpdateMobilePlanRequest;
+import com.udt.udt_dip.contract.service.ContractService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;

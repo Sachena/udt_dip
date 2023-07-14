@@ -1,4 +1,4 @@
-package com.udt.udt_dip.repository;
+package com.udt.udt_dip.contract.repository;
 
 import lombok.Getter;
 import org.apache.commons.lang3.math.NumberUtils;
