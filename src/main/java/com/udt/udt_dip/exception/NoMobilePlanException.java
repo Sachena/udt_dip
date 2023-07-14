@@ -1,6 +1,6 @@
 package com.udt.udt_dip.exception;
 
-public class NoMobilePlanException extends RuntimeException{
+public class NoMobilePlanException extends RuntimeException {
 
     public NoMobilePlanException() {
         super();

@@ -1,7 +1,6 @@
 package com.udt.udt_dip.exception;
 
 public class NoMobilePhoneException extends RuntimeException {
-
     public NoMobilePhoneException() {
         super();
     }
@@ -21,4 +20,5 @@ public class NoMobilePhoneException extends RuntimeException {
     protected NoMobilePhoneException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
         super(message, cause, enableSuppression, writableStackTrace);
     }
+
 }

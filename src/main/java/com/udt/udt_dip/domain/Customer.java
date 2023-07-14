@@ -1,4 +1,4 @@
-package com.udt.udt_dip.entity;
+package com.udt.udt_dip.domain;
 
 import lombok.Getter;
 
@@ -9,16 +9,14 @@ import javax.persistence.Id;
 
 @Getter
 @Entity
-public class MobilePhone {
+public class Customer {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String manufacturer;
-    private String model;
-    private String name;
-    private String usim;
-    private String description;
-    private String price;
 
+    private String name;
+
+    private String residentNumber;
 
 }

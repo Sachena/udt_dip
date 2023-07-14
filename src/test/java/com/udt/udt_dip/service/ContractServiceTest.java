@@ -2,7 +2,7 @@ package com.udt.udt_dip.service;
 
 import com.udt.udt_dip.dto.RetrieveContractRequest;
 import com.udt.udt_dip.dto.UpdateMobilePlanRequest;
-import com.udt.udt_dip.entity.Contract;
+import com.udt.udt_dip.domain.Contract;
 import com.udt.udt_dip.repository.ContractRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,10 +27,10 @@ class ContractServiceTest {
 
         //given
         RetrieveContractRequest retrieveContractRequest = new RetrieveContractRequest();
-        retrieveContractRequest.setTargetContractId("1");
+        retrieveContractRequest.setContractId("1");
 
         //when
-        Contract targetContract = contractRepository.findById(Long.valueOf(retrieveContractRequest.getTargetContractId())).orElse(null);
+        Contract targetContract = contractRepository.findById(Long.valueOf(retrieveContractRequest.getContractId())).orElse(null);
 
         //then
         assertEquals(String.valueOf(targetContract.getId()), "1");

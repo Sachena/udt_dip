@@ -7,7 +7,7 @@ import java.time.LocalDateTime;
 @Data
 public class RetrieveContractResponse {
 
-    private Long id;
+    private String contractId;
     private String phoneNumber;
     private LocalDateTime firstContractDate;
     private LocalDateTime contractChangeDatetime;

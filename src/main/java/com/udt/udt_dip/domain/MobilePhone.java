@@ -1,4 +1,4 @@
-package com.udt.udt_dip.entity;
+package com.udt.udt_dip.domain;
 
 import lombok.Getter;
 
@@ -7,21 +7,18 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-@Entity
 @Getter
-public class MobilePlan {
-
+@Entity
+public class MobilePhone {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
+    private String manufacturer;
+    private String model;
     private String name;
-
+    private String usim;
+    private String description;
     private String price;
 
-    private String description;
 
-    public String calculatePrice() {
-        return this.getPrice();
-    }
 }

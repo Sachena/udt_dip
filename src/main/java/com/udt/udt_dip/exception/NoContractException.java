@@ -1,6 +1,6 @@
 package com.udt.udt_dip.exception;
 
-public class NoContractException extends RuntimeException{
+public class NoContractException extends RuntimeException {
 
     public NoContractException() {
         super();

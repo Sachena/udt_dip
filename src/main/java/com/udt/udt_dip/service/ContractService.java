@@ -3,10 +3,10 @@ package com.udt.udt_dip.service;
 import com.udt.udt_dip.dto.RetrieveContractRequest;
 import com.udt.udt_dip.dto.RetrieveContractResponse;
 import com.udt.udt_dip.dto.UpdateMobilePlanRequest;
-import com.udt.udt_dip.entity.Contract;
-import com.udt.udt_dip.entity.Customer;
-import com.udt.udt_dip.entity.MobilePhone;
-import com.udt.udt_dip.entity.MobilePlan;
+import com.udt.udt_dip.domain.Contract;
+import com.udt.udt_dip.domain.Customer;
+import com.udt.udt_dip.domain.MobilePhone;
+import com.udt.udt_dip.domain.MobilePlan;
 import com.udt.udt_dip.exception.NoContractException;
 import com.udt.udt_dip.exception.NoCustomerException;
 import com.udt.udt_dip.exception.NoMobilePhoneException;
@@ -31,7 +31,8 @@ public class ContractService {
 
     public RetrieveContractResponse retrieveContract(RetrieveContractRequest retrieveContractRequest) {
 
-        Contract contract = contractRepository.findById(Long.valueOf(retrieveContractRequest.getTargetContractId()))
+        // Long.valueOf => NumberUtil.valueOf
+        Contract contract = contractRepository.findById(Long.valueOf(retrieveContractRequest.getContractId()))
                 .orElseThrow(() -> new NoContractException("존재하지 않는 계약 정보입니다."));
 
         Customer customer = customerRepository.findById(contract.getCustomerId())
@@ -44,7 +45,8 @@ public class ContractService {
                 .orElseThrow(() -> new NoMobilePlanException("요금제 정보가 존재하지 않습니다."));
 
         RetrieveContractResponse retrieveContractResponse = new RetrieveContractResponse();
-        retrieveContractResponse.setId(contract.getId());
+        // String.valueOf => StringUtil.valueOf
+        retrieveContractResponse.setContractId(String.valueOf(contract.getId()));
         retrieveContractResponse.setPhoneNumber(contract.getPhoneNumber());
         retrieveContractResponse.setFirstContractDate(contract.getFirstContractDate());
         retrieveContractResponse.setContractChangeDatetime(contract.getContractChangeDatetime());
@@ -62,23 +64,20 @@ public class ContractService {
     public void updateMobilePlan(UpdateMobilePlanRequest updateMobilePlanRequest) {
 
         // 변경할 계약 정보 가져오기
-        Contract targetContract = contractRepository.findById(Long.valueOf(updateMobilePlanRequest.getTargetContractId()))
+        Contract contract = contractRepository.findById(Long.valueOf(updateMobilePlanRequest.getTargetContractId()))
                 .orElseThrow(() -> new RuntimeException("존재하지 않는 계약 정보입니다."));
 
         // 요금제 존재여부 => 요금제 정보 조회
-        MobilePlan finalMobilePlan = mobilePlanRepository.findById(Long.valueOf(updateMobilePlanRequest.getTargetMobilePlanId()))
+        MobilePlan mobilePlan = mobilePlanRepository.findById(Long.valueOf(updateMobilePlanRequest.getTargetMobilePlanId()))
                 .orElseThrow(() -> new RuntimeException("존재하지 않는 요금제 정보입니다."));
 
         // 계약에서 요금제 정보 변경
-        targetContract.updateMobilePlan(String.valueOf(finalMobilePlan.getId()));
+        contract.updateMobilePlan(String.valueOf(mobilePlan.getId()));
 
-        //요금제 계산
-        String finalPrice = finalMobilePlan.calculatePrice();
+        // 요금제 계산
+        String calculatedPrice = mobilePlan.calculatePrice();
 
         // 통신비 (최종 통신비) 변경
-        targetContract.updateCommunicationExpense(finalPrice);
+        contract.updateCommunicationExpense(calculatedPrice);
     }
-
-
-
 }

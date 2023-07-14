@@ -4,5 +4,5 @@ import lombok.Data;
 
 @Data
 public class RetrieveContractRequest {
-    private String targetContractId;
+    private String contractId;
 }

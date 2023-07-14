@@ -1,4 +1,4 @@
-package com.udt.udt_dip.entity;
+package com.udt.udt_dip.domain;
 
 import lombok.Getter;
 
