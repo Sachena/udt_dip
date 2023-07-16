@@ -5,14 +5,14 @@ import com.udt.udt_dip.contract.dto.RetrieveContractRequest;
 import com.udt.udt_dip.contract.dto.RetrieveContractResponse;
 import com.udt.udt_dip.customer.domain.Customer;
 import com.udt.udt_dip.mobilephone.domain.MobilePhone;
+import com.udt.udt_dip.mobileplan.domain.MobilePlan;
 import com.udt.udt_dip.mobileplan.dto.UpdateMobilePlanRequest;
-import com.udt.udt_dip.mobilephone.repository.MobilePhoneEntity;
-import com.udt.udt_dip.mobileplan.repository.MobilePlan;
-import com.udt.udt_dip.exception.NoMobilePhoneException;
+import com.udt.udt_dip.mobileplan.repository.MobilePlanEntity;
 import com.udt.udt_dip.exception.NoMobilePlanException;
 import com.udt.udt_dip.contract.repository.ContractRepository;
 import com.udt.udt_dip.customer.repository.CustomerRepository;
 import com.udt.udt_dip.mobilephone.repository.MobilePhoneRepository;
+import com.udt.udt_dip.mobileplan.repository.MobilePlanPersistenceObjectRepository;
 import com.udt.udt_dip.mobileplan.repository.MobilePlanRepository;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.ObjectUtils;
@@ -38,8 +38,7 @@ public class ContractService {
 
         MobilePhone mobilePhone = mobilePhoneRepository.findById(contract.getMobilePhoneId());
 
-        MobilePlan mobilePlan = mobilePlanRepository.findById(NumberUtils.toLong(contract.getMobilePlanId()))
-                .orElseThrow(() -> new NoMobilePlanException("요금제 정보가 존재하지 않습니다."));
+        MobilePlan mobilePlan = mobilePlanRepository.findById(contract.getMobilePlanId());
 
         RetrieveContractResponse retrieveContractResponse = new RetrieveContractResponse();
         retrieveContractResponse.setContractId(ObjectUtils.toString(contract.getId()));
@@ -63,11 +62,10 @@ public class ContractService {
         Contract contract = contractRepository.findById(updateMobilePlanRequest.getTargetContractId());
 
         // 요금제 존재여부 => 요금제 정보 조회
-        MobilePlan mobilePlan = mobilePlanRepository.findById(NumberUtils.toLong(updateMobilePlanRequest.getTargetMobilePlanId()))
-                .orElseThrow(() -> new RuntimeException("존재하지 않는 요금제 정보입니다."));
+        MobilePlan mobilePlan = mobilePlanRepository.findById(contract.getMobilePlanId());
 
         // 계약에서 요금제 정보 변경
-        contract.updateMobilePlan(ObjectUtils.toString(mobilePlan.getId()));
+        contract.updateMobilePlan(updateMobilePlanRequest.getTargetMobilePlanId());
 
         // 요금제 계산
         String calculatedPrice = mobilePlan.calculatePrice();

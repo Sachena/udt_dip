@@ -1,15 +1,17 @@
 package com.udt.udt_dip.mobileplan.repository;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor
 @Getter
-public class MobilePlan {
+@Table(name="mobile_plan")
+public class MobilePlanEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,7 +23,5 @@ public class MobilePlan {
 
     private String description;
 
-    public String calculatePrice() {
-        return this.getPrice();
-    }
+
 }

@@ -60,8 +60,8 @@ class ContractEntityServiceTest {
         //then
         Contract contract = contractRepository.findById("1");
 
-        assertEquals(ObjectUtils.toString(contract.getId()), "1");
-        assertEquals(ObjectUtils.toString(contract.getMobilePlanId()) , "2");
+        assertEquals("1",ObjectUtils.toString(contract.getId()));
+        assertEquals("2",ObjectUtils.toString(contract.getMobilePlanId())  );
         System.out.println("targetContract.getCommunicationExpense() = " + contract.getCommunicationExpense());
 
     }

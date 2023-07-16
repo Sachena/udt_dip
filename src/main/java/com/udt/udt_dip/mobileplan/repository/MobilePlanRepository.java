@@ -1,8 +1,7 @@
 package com.udt.udt_dip.mobileplan.repository;
 
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
+import com.udt.udt_dip.mobileplan.domain.MobilePlan;
 
-@Repository
-public interface MobilePlanRepository extends JpaRepository<MobilePlan, Long> {
+public interface MobilePlanRepository {
+    MobilePlan findById(String id);
 }
