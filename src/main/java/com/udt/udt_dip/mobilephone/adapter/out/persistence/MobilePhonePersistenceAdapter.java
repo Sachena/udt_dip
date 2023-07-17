@@ -12,12 +12,12 @@ import org.springframework.stereotype.Component;
 public class MobilePhonePersistenceAdapter implements MobilePhonePort {
 
     private final MobilePhonePersistenceRepository mobilePhonePersistenceRepository;
-    private final MobilePhoneMapper mobilePhoneMapper;
+    private final MobilePhonePersistenceMapper mobilePhonePersistenceMapper;
 
     @Override
     public MobilePhone findById(Long id) {
 
-        return mobilePhoneMapper.fromPersistenceToDomain(mobilePhonePersistenceRepository.findById(id)
+        return mobilePhonePersistenceMapper.fromPersistenceToDomain(mobilePhonePersistenceRepository.findById(id)
                 .orElseThrow(() -> new NoMobilePhoneException("휴대폰 단말 정보가 존재하지 않습니다.")));
     }
 }

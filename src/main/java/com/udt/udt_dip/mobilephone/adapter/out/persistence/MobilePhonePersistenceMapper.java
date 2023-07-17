@@ -5,7 +5,7 @@ import com.udt.udt_dip.mobilephone.domain.model.MobilePhone;
 import org.springframework.stereotype.Component;
 
 @Component
-public class MobilePhoneMapper {
+public class MobilePhonePersistenceMapper {
 
     public MobilePhone fromPersistenceToDomain(MobilePhonePersitenceEntity mobilePhonePersitenceEntity) {
 

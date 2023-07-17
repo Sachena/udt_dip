@@ -12,11 +12,11 @@ import org.springframework.stereotype.Component;
 public class CustomerPersistenceAdapter implements CustomerPort {
 
     private final CustomerPersistenceRepository customerPersistenceRepository;
-    private final CustomerMapper customerMapper;
+    private final CustomerPersistenceMapper customerPersistenceMapper;
 
     @Override
     public Customer findById(Long id) {
-        return customerMapper.fromPersistenceToDomain(customerPersistenceRepository.findById(id)
+        return customerPersistenceMapper.fromPersistenceToDomain(customerPersistenceRepository.findById(id)
                 .orElseThrow(() -> new NoCustomerException("고객 정보가 존재하지 않습니다.")));
     }
 }
