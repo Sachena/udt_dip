@@ -1,9 +1,10 @@
 package com.udt.udt_dip.service;
 
-import com.udt.udt_dip.dto.RetrieveContractRequest;
-import com.udt.udt_dip.dto.UpdateMobilePlanRequest;
-import com.udt.udt_dip.domain.Contract;
-import com.udt.udt_dip.repository.ContractRepository;
+import com.udt.udt_dip.contract.application.service.ContractService;
+import com.udt.udt_dip.contract.adapter.in.web.model.RetrieveContractRequest;
+import com.udt.udt_dip.contract.adapter.in.web.model.UpdateMobilePlanRequest;
+import com.udt.udt_dip.contract.adapter.out.persistence.entity.ContractPersistenceEntity;
+import com.udt.udt_dip.contract.adapter.out.persistence.repository.ContractPersistenceRepository;
 import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.math.NumberUtils;
 import org.junit.jupiter.api.Test;
@@ -22,7 +23,7 @@ class ContractServiceTest {
     private ContractService contractService;
     
     @Autowired
-    private ContractRepository contractRepository;
+    private ContractPersistenceRepository contractPersistenceRepository;
     
     @Test
     void retrieveContract(){
@@ -32,11 +33,11 @@ class ContractServiceTest {
         retrieveContractRequest.setContractId("1");
 
         //when
-        Contract targetContract = contractRepository.findById(NumberUtils.toLong(retrieveContractRequest.getContractId())).orElse(null);
+        ContractPersistenceEntity targetContractPersistenceEntity = contractPersistenceRepository.findById(NumberUtils.toLong(retrieveContractRequest.getContractId())).orElseThrow();
 
         //then
-        assertEquals(ObjectUtils.toString(targetContract.getId()), "1");
-        assertEquals(ObjectUtils.toString(targetContract.getCustomerId()) , "1");
+        assertEquals(String.valueOf(targetContractPersistenceEntity.getId()), "1");
+        assertEquals(String.valueOf(targetContractPersistenceEntity.getCustomerId()) , "1");
 
 
     }
@@ -54,11 +55,11 @@ class ContractServiceTest {
         contractService.updateMobilePlan(updateMobilePlanRequest);
 
         //then
-        Contract targetContract = contractRepository.findById(NumberUtils.toLong("1")).orElse(null);
+        ContractPersistenceEntity targetContractPersistenceEntity = contractPersistenceRepository.findById(NumberUtils.toLong("1")).orElseThrow();
 
-        assertEquals(ObjectUtils.toString(targetContract.getId()), "1");
-        assertEquals(ObjectUtils.toString(targetContract.getMobilePlanId()) , "2");
-        System.out.println("targetContract.getCommunicationExpense() = " + targetContract.getCommunicationExpense());
+        assertEquals(String.valueOf(targetContractPersistenceEntity.getId()), "1");
+        assertEquals(String.valueOf(targetContractPersistenceEntity.getMobilePlanId()) , "2");
+        System.out.println("targetContract.getCommunicationExpense() = " + targetContractPersistenceEntity.getCommunicationExpense());
 
     }
 }
