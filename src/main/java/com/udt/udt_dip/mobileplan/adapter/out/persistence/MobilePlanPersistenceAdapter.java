@@ -12,12 +12,12 @@ import org.springframework.stereotype.Component;
 public class MobilePlanPersistenceAdapter implements MobilePlanPort {
 
     private final MobilePhonePersistenceRepository mobilePhonePersistenceRepository;
-    private final MobilePlanMapper mobilePlanMapper;
+    private final MobilePlanPersistenceMapper mobilePlanPersistenceMapper;
 
     @Override
     public MobilePlan findById(Long id) {
 
-        return mobilePlanMapper.fromPersistenceToDomain(mobilePhonePersistenceRepository.findById(id)
+        return mobilePlanPersistenceMapper.fromPersistenceToDomain(mobilePhonePersistenceRepository.findById(id)
                 .orElseThrow(() -> new NoMobilePlanException("요금제 정보가 존재하지 않습니다.")));
     }
 }

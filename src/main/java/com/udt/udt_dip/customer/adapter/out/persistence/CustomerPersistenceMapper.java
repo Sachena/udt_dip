@@ -5,7 +5,7 @@ import com.udt.udt_dip.customer.domain.model.Customer;
 import org.springframework.stereotype.Component;
 
 @Component
-public class CustomerMapper {
+public class CustomerPersistenceMapper {
 
     public Customer fromPersistenceToDomain(CustomerPersistenceEntity customerPersistenceEntity) {
 
