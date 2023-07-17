@@ -1,14 +1,16 @@
 package com.udt.udt_dip.contract.repository;
 
 import com.udt.udt_dip.contract.domain.Contract;
+import org.apache.commons.lang3.ObjectUtils;
+import org.apache.commons.lang3.math.NumberUtils;
 import org.springframework.stereotype.Component;
 
 @Component
-public class ContractPersistenceMapper {
+public class ContractJpaMapper {
 
     public Contract fromEntityToDomain(ContractJpaEntity contractJpaEntity) {
         return new Contract(
-            contractJpaEntity.getId(),
+            String.valueOf(contractJpaEntity.getId()),
             contractJpaEntity.getPhoneNumber(),
             contractJpaEntity.getFirstContractDate(),
             contractJpaEntity.getCustomerId(),
@@ -21,7 +23,7 @@ public class ContractPersistenceMapper {
 
     public ContractJpaEntity fromDomainToEntity(Contract contract) {
         return new ContractJpaEntity(
-            contract.getId(),
+            NumberUtils.toLong(contract.getId()),
             contract.getPhoneNumber(),
             contract.getFirstContractDate(),
             contract.getCustomerId(),

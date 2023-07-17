@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 public class Contract {
 
-    private Long id;
+    private String id;
 
     private String phoneNumber;
 
@@ -28,13 +28,13 @@ public class Contract {
 
     private String communicationExpense;
 
-    public void updateMobilePlan(String targetMobilePlanId) {
-        this.mobilePlanId = targetMobilePlanId;
+    public void updateMobilePlan(String mobilePlanId) {
+        this.mobilePlanId = mobilePlanId;
         this.contractChangeDatetime = LocalDateTime.now();
     }
 
-    public void updateCommunicationExpense(String targetMobilePlanId) {
-        this.communicationExpense = targetMobilePlanId;
+    public void updateCommunicationExpense(String mobilePlanId) {
+        this.communicationExpense = mobilePlanId;
     }
 
 }

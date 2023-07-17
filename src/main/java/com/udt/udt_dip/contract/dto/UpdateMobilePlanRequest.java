@@ -5,9 +5,9 @@ import lombok.Data;
 @Data
 public class UpdateMobilePlanRequest {
 
-    private String targetContractId;
+    private String contractId;
 
-    private String targetMobilePlanId;
+    private String mobilePlanId;
 
 
 }

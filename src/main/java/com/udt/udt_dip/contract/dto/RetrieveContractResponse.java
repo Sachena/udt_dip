@@ -23,10 +23,10 @@ public class RetrieveContractResponse {
     private String mobilePlanName;
     private String mobilePlanPrice;
 
-    public static RetrieveContractResponse generateResponseByDomain(Contract contract, Customer customer,
+    public static RetrieveContractResponse generateByDomain(Contract contract, Customer customer,
         MobilePhone mobilePhone, MobilePlan mobilePlan) {
         RetrieveContractResponse retrieveContractResponse = new RetrieveContractResponse();
-        retrieveContractResponse.setContractId(ObjectUtils.toString(contract.getId()));
+        retrieveContractResponse.setContractId(String.valueOf(contract.getId()));
         retrieveContractResponse.setPhoneNumber(contract.getPhoneNumber());
         retrieveContractResponse.setFirstContractDate(contract.getFirstContractDate());
         retrieveContractResponse.setContractChangeDatetime(contract.getContractChangeDatetime());

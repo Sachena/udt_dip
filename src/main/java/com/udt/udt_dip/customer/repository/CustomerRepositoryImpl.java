@@ -10,12 +10,12 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class CustomerRepositoryImpl implements CustomerRepository {
 
-    private final CustomerPersistenceMapper customerPersistenceMapper;
+    private final CustomerJpaMapper customerJpaMapper;
     private final CustomerJpaRepository customerJpaRepository;
 
     @Override
     public Customer findById(String id) {
-        return customerPersistenceMapper.fromEntityToDomain(
+        return customerJpaMapper.fromEntityToDomain(
             customerJpaRepository.findById(NumberUtils.toLong(id))
                 .orElseThrow(() -> new NoCustomerException("존재하지 않는 고객입니다."))
         );

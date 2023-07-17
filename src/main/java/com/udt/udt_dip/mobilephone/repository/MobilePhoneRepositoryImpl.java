@@ -10,12 +10,12 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class MobilePhoneRepositoryImpl implements MobilePhoneRepository {
 
-    private final MobilePhonePersistenceMapper mobilePhonePersistenceMapper;
+    private final MobilePhoneJpaMapper mobilePhoneJpaMapper;
     private final MobilePhoneJpaRepository mobilePhoneJpaRepository;
 
     @Override
     public MobilePhone findById(String id) {
-        return mobilePhonePersistenceMapper.fromEntityToDomain(
+        return mobilePhoneJpaMapper.fromEntityToDomain(
             mobilePhoneJpaRepository.findById(NumberUtils.toLong(id))
                 .orElseThrow(() -> new NoMobilePhoneException("존재하지 않는 핸드폰정보 입니다."))
         );

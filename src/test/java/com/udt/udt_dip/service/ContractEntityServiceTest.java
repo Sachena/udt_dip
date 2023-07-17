@@ -48,8 +48,8 @@ class ContractEntityServiceTest {
 
         //given
         UpdateMobilePlanRequest updateMobilePlanRequest = new UpdateMobilePlanRequest();
-        updateMobilePlanRequest.setTargetContractId("1");
-        updateMobilePlanRequest.setTargetMobilePlanId("2");
+        updateMobilePlanRequest.setContractId("1");
+        updateMobilePlanRequest.setMobilePlanId("2");
 
 
         //when
@@ -58,9 +58,9 @@ class ContractEntityServiceTest {
         //then
         Contract contract = contractRepository.findById("1");
 
-        assertEquals("1",ObjectUtils.toString(contract.getId()));
-        assertEquals("2",ObjectUtils.toString(contract.getMobilePlanId())  );
-        System.out.println("targetContract.getCommunicationExpense() = " + contract.getCommunicationExpense());
+        assertEquals("1",String.valueOf(contract.getId()));
+        assertEquals("2",String.valueOf(contract.getMobilePlanId())  );
+        System.out.println("contract.getCommunicationExpense() = " + contract.getCommunicationExpense());
 
     }
 }

@@ -35,20 +35,20 @@ public class ContractService {
 
         MobilePlan mobilePlan = mobilePlanRepository.findById(contract.getMobilePlanId());
 
-        return RetrieveContractResponse.generateResponseByDomain(contract, customer, mobilePhone, mobilePlan);
+        return RetrieveContractResponse.generateByDomain(contract, customer, mobilePhone, mobilePlan);
     }
 
     @Transactional
     public void updateMobilePlan(UpdateMobilePlanRequest updateMobilePlanRequest) {
 
         // 변경할 계약 정보 가져오기
-        Contract contract = contractRepository.findById(updateMobilePlanRequest.getTargetContractId());
+        Contract contract = contractRepository.findById(updateMobilePlanRequest.getContractId());
 
         // 요금제 존재여부 => 요금제 정보 조회
         MobilePlan mobilePlan = mobilePlanRepository.findById(contract.getMobilePlanId());
 
         // 계약에서 요금제 정보 변경
-        contract.updateMobilePlan(updateMobilePlanRequest.getTargetMobilePlanId());
+        contract.updateMobilePlan(updateMobilePlanRequest.getMobilePlanId());
 
         // 요금제 계산
         String calculatedPrice = mobilePlan.calculatePrice();
@@ -56,6 +56,6 @@ public class ContractService {
         // 통신비 (최종 통신비) 변경
         contract.updateCommunicationExpense(calculatedPrice);
 
-        contractRepository.save(contract);
+        contractRepository.update(contract);
     }
 }

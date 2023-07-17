@@ -1,5 +1,6 @@
 package com.udt.udt_dip.contract.repository;
 
+import com.udt.udt_dip.contract.domain.Contract;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -33,4 +34,14 @@ public class ContractJpaEntity {
     private String communicationExpense;
 
 
+    public void update(Contract contract) {
+        this.phoneNumber=contract.getPhoneNumber();
+        this.firstContractDate=contract.getFirstContractDate();
+        this.customerId=contract.getCustomerId();
+        this.mobilePhoneId=contract.getMobilePhoneId();
+        this.mobilePlanId=contract.getMobilePlanId();
+        this.contractChangeDatetime=LocalDateTime.now();
+        this.communicationExpense=contract.getCommunicationExpense();
+
+    }
 }
