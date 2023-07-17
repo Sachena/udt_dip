@@ -10,18 +10,20 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class ContractRepositoryImpl implements ContractRepository {
 
-    private final ContractMapper contractMapper;
-    private final ContractPersistenceObjectRepository contractPersistenceObjectRepository;
-
+    private final ContractPersistenceMapper contractPersistenceMapper;
+    private final ContractJpaRepository contractJpaRepository;
 
 
     @Override
     public Contract findById(String id) {
-       return contractMapper.fromEntityToDomain(contractPersistenceObjectRepository.findById(Long.valueOf(id)).orElseThrow(()-> new NoContractException("존재하지 않는 계약 정보입니다.")));
+        return contractPersistenceMapper.fromEntityToDomain(
+            contractJpaRepository.findById(Long.valueOf(id))
+                .orElseThrow(() -> new NoContractException("존재하지 않는 계약 정보입니다."))
+        );
     }
 
     @Override
     public void save(Contract contract) {
-        contractPersistenceObjectRepository.save(contractMapper.fromDomainToEntity(contract));
+        contractJpaRepository.save(contractPersistenceMapper.fromDomainToEntity(contract));
     }
 }

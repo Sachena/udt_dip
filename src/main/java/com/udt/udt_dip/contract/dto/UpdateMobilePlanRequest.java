@@ -1,4 +1,4 @@
-package com.udt.udt_dip.mobileplan.dto;
+package com.udt.udt_dip.contract.dto;
 
 import lombok.Data;
 

@@ -6,12 +6,13 @@ import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor
-public class CustomerMapper {
-    public Customer fromEntityToDomain(CustomerEntity customerEntity) {
+public class CustomerPersistenceMapper {
+
+    public Customer fromEntityToDomain(CustomerJpaEntity customerJpaEntity) {
         return new Customer(
-                customerEntity.getId(),
-                customerEntity.getName(),
-                customerEntity.getResidentNumber()
+            customerJpaEntity.getId(),
+            customerJpaEntity.getName(),
+            customerJpaEntity.getResidentNumber()
         );
     }
 }

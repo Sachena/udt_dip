@@ -8,15 +8,18 @@ import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor
-public class MobilePlanRepositoryImpl implements MobilePlanRepository{
+public class MobilePlanRepositoryImpl implements MobilePlanRepository {
 
-    private final MobilePlanMapper mobilePlanMapper;
+    private final MobilePlanPersistenceMapper mobilePlanPersistenceMapper;
 
-    private final MobilePlanPersistenceObjectRepository mobilePlanPersistenceObjectRepository;
+    private final MobilePlanJpaRepository mobilePlanJpaRepository;
 
 
     @Override
     public MobilePlan findById(String id) {
-        return mobilePlanMapper.fromEntityToDomain(mobilePlanPersistenceObjectRepository.findById(NumberUtils.toLong(id)).orElseThrow(()->new NoMobilePlanException("존재하지 않는 요금제 정보입니다.")));
+        return mobilePlanPersistenceMapper.fromEntityToDomain(
+            mobilePlanJpaRepository.findById(NumberUtils.toLong(id))
+                .orElseThrow(() -> new NoMobilePlanException("존재하지 않는 요금제 정보입니다."))
+        );
     }
 }
