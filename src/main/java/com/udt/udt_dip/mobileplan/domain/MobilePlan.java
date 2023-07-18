@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class MobilePlan {
 
-    private Long id;
+    private String id;
 
     private String name;
 

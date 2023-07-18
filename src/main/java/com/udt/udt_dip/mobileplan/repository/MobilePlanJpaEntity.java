@@ -10,8 +10,8 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
-@Table(name="mobile_plan")
-public class MobilePlanEntity {
+@Table(name = "mobile_plan")
+public class MobilePlanJpaEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -18,7 +18,8 @@ public class NoCustomerException extends RuntimeException {
         super(cause);
     }
 
-    protected NoCustomerException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
+    protected NoCustomerException(String message, Throwable cause, boolean enableSuppression,
+        boolean writableStackTrace) {
         super(message, cause, enableSuppression, writableStackTrace);
     }
 }

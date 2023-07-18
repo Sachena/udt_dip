@@ -7,7 +7,7 @@ import lombok.Getter;
 @AllArgsConstructor
 public class MobilePhone {
 
-    private Long id;
+    private String id;
     private String manufacturer;
     private String model;
     private String name;

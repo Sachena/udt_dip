@@ -8,13 +8,16 @@ import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor
-public class MobilePhoneRepositoryImpl implements MobilePhoneRepository{
+public class MobilePhoneRepositoryImpl implements MobilePhoneRepository {
 
-    private final MobilePhoneMapper mobilePhoneMapper;
-    private final MobilePhonePersistenceObjectRepository mobilePhonePersistenceObjectRepository;
+    private final MobilePhoneJpaMapper mobilePhoneJpaMapper;
+    private final MobilePhoneJpaRepository mobilePhoneJpaRepository;
 
     @Override
     public MobilePhone findById(String id) {
-        return mobilePhoneMapper.fromEntityToDomain(mobilePhonePersistenceObjectRepository.findById(NumberUtils.toLong(id)).orElseThrow(()-> new NoMobilePhoneException("존재하지 않는 핸드폰정보 입니다.")));
+        return mobilePhoneJpaMapper.fromEntityToDomain(
+            mobilePhoneJpaRepository.findById(NumberUtils.toLong(id))
+                .orElseThrow(() -> new NoMobilePhoneException("존재하지 않는 핸드폰정보 입니다."))
+        );
     }
 }

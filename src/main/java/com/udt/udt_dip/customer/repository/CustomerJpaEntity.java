@@ -1,4 +1,4 @@
-package com.udt.udt_dip.mobilephone.repository;
+package com.udt.udt_dip.customer.repository;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -10,17 +10,15 @@ import javax.persistence.*;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name="mobile_phone")
-public class MobilePhoneEntity {
+@Table(name = "customer")
+public class CustomerJpaEntity {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String manufacturer;
-    private String model;
-    private String name;
-    private String usim;
-    private String description;
-    private String price;
 
+    private String name;
+
+    private String residentNumber;
 
 }
