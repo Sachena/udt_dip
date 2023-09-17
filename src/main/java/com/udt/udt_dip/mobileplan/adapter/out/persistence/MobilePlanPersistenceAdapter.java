@@ -2,14 +2,14 @@ package com.udt.udt_dip.mobileplan.adapter.out.persistence;
 
 import com.udt.udt_dip.common.exception.NoMobilePlanException;
 import com.udt.udt_dip.mobilephone.adapter.out.persistence.repository.MobilePhonePersistenceRepository;
-import com.udt.udt_dip.mobileplan.application.port.MobilePlanPort;
+import com.udt.udt_dip.mobileplan.application.port.out.MobilePlanOutputPort;
 import com.udt.udt_dip.mobileplan.domain.model.MobilePlan;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor
-public class MobilePlanPersistenceAdapter implements MobilePlanPort {
+public class MobilePlanPersistenceAdapter implements MobilePlanOutputPort {
 
     private final MobilePhonePersistenceRepository mobilePhonePersistenceRepository;
     private final MobilePlanPersistenceMapper mobilePlanPersistenceMapper;

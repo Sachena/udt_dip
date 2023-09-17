@@ -6,7 +6,7 @@ import com.udt.udt_dip.common.exception.NoMobilePhoneException;
 import com.udt.udt_dip.common.exception.NoMobilePlanException;
 import com.udt.udt_dip.contract.adapter.out.persistence.entity.ContractPersistenceEntity;
 import com.udt.udt_dip.contract.adapter.out.persistence.repository.ContractPersistenceRepository;
-import com.udt.udt_dip.contract.application.port.ContractPort;
+import com.udt.udt_dip.contract.application.port.out.ContractOutputPort;
 import com.udt.udt_dip.contract.domain.model.Contract;
 import com.udt.udt_dip.customer.adapter.out.persistence.repository.CustomerPersistenceRepository;
 import com.udt.udt_dip.mobilephone.adapter.out.persistence.repository.MobilePhonePersistenceRepository;
@@ -16,7 +16,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor
-public class ContractPersistenceAdapter implements ContractPort {
+public class ContractPersistenceAdapter implements ContractOutputPort {
 
     private final ContractPersistenceMapper contractPersistenceMapper;
     private final ContractPersistenceRepository contractPersistenceRepository;
