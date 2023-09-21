@@ -15,5 +15,8 @@ public class MobilePlanDiscount {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Long mobilePlanId;
+    private String name;
     private float ratio;
+    private String description;
+
 }
