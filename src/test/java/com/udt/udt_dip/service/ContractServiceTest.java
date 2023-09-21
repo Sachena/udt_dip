@@ -2,7 +2,7 @@ package com.udt.udt_dip.service;
 
 import com.udt.udt_dip.dto.RetrieveContractRequest;
 import com.udt.udt_dip.dto.UpdateMobilePlanRequest;
-import com.udt.udt_dip.domain.Contract;
+import com.udt.udt_dip.entity.Contract;
 import com.udt.udt_dip.repository.ContractRepository;
 import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.math.NumberUtils;
