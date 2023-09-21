@@ -9,14 +9,11 @@ import javax.persistence.Id;
 
 @Getter
 @Entity
-public class MobilePhone {
+public class MobilePlanDiscount {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String manufacturer;
-    private String model;
-    private String name;
-    private String usim;
-    private String description;
-    private int price;
+    private Long mobilePlanId;
+    private float ratio;
 }

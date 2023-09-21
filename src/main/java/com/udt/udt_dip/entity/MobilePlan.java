@@ -15,10 +15,6 @@ public class MobilePlan {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    private String price;
+    private int price;
     private String description;
-
-    public String calculatePrice() {
-        return this.getPrice();
-    }
 }

@@ -18,16 +18,17 @@ public class Contract {
     private Long customerId;
     private Long mobilePhoneId;
     private Long mobilePlanId;
+    private Long mobilePlanDiscountId;
     private LocalDateTime contractChangeDatetime;
-    private String communicationExpense;
+    private float communicationExpense;
 
     public void updateMobilePlan(String targetMobilePlanId) {
         this.mobilePlanId = NumberUtils.toLong(targetMobilePlanId);
         this.contractChangeDatetime = LocalDateTime.now();
     }
 
-    public void updateCommunicationExpense(String targetMobilePlanId) {
-        this.communicationExpense = targetMobilePlanId;
+    public void updateCommunicationExpense(float communicationExpense) {
+        this.communicationExpense = communicationExpense;
     }
 
 

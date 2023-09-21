@@ -35,8 +35,8 @@ class ContractServiceTest {
         Contract targetContract = contractRepository.findById(NumberUtils.toLong(retrieveContractRequest.getContractId())).orElse(null);
 
         //then
-        assertEquals(ObjectUtils.toString(targetContract.getId()), "1");
-        assertEquals(ObjectUtils.toString(targetContract.getCustomerId()) , "1");
+        assertEquals(String.valueOf(targetContract.getId()), "1");
+        assertEquals(String.valueOf(targetContract.getCustomerId()), "1");
 
 
     }
@@ -56,8 +56,8 @@ class ContractServiceTest {
         //then
         Contract targetContract = contractRepository.findById(NumberUtils.toLong("1")).orElse(null);
 
-        assertEquals(ObjectUtils.toString(targetContract.getId()), "1");
-        assertEquals(ObjectUtils.toString(targetContract.getMobilePlanId()) , "2");
+        assertEquals(String.valueOf(targetContract.getId()), "1");
+        assertEquals(String.valueOf(targetContract.getMobilePlanId()), "2");
         System.out.println("targetContract.getCommunicationExpense() = " + targetContract.getCommunicationExpense());
 
     }
