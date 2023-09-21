@@ -1,6 +1,7 @@
 package com.udt.udt_dip.mobileplan.domain;
 
 
+import com.udt.udt_dip.mobileplandiscount.domain.MobilePlanDiscount;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,8 +19,8 @@ public class MobilePlan {
 
     private String description;
 
-    public String calculatePrice() {
-        return this.getPrice();
+    public String calculatePrice(MobilePlanDiscount mobilePlanDiscount) {
+        return String.valueOf(  Float.valueOf(this.getPrice()) -  (Float.valueOf(this.getPrice()) * mobilePlanDiscount.getRatio()) / 100);
     }
 
 }

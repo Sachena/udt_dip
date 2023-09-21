@@ -24,6 +24,8 @@ public class Contract {
 
     private String mobilePlanId;
 
+    private String mobilePlanDiscountId;
+
     private LocalDateTime contractChangeDatetime;
 
     private String communicationExpense;

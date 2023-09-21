@@ -16,6 +16,7 @@ public class ContractJpaMapper {
             contractJpaEntity.getCustomerId(),
             contractJpaEntity.getMobilePhoneId(),
             contractJpaEntity.getMobilePlanId(),
+            contractJpaEntity.getMobilePlanDiscountId(),
             contractJpaEntity.getContractChangeDatetime(),
             contractJpaEntity.getCommunicationExpense()
         );
@@ -29,6 +30,7 @@ public class ContractJpaMapper {
             contract.getCustomerId(),
             contract.getMobilePhoneId(),
             contract.getMobilePlanId(),
+            contract.getMobilePlanDiscountId(),
             contract.getContractChangeDatetime(),
             contract.getCommunicationExpense()
         );

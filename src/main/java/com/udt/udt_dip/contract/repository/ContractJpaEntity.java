@@ -29,6 +29,8 @@ public class ContractJpaEntity {
 
     private String mobilePlanId;
 
+    private String mobilePlanDiscountId;
+
     private LocalDateTime contractChangeDatetime;
 
     private String communicationExpense;

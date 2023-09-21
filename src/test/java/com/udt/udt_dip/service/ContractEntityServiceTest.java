@@ -6,12 +6,18 @@ import com.udt.udt_dip.contract.service.ContractService;
 import com.udt.udt_dip.contract.dto.RetrieveContractRequest;
 import com.udt.udt_dip.contract.dto.UpdateMobilePlanRequest;
 import com.udt.udt_dip.contract.repository.ContractRepository;
+import com.udt.udt_dip.mobileplandiscount.domain.MobilePlanDiscount;
+import com.udt.udt_dip.mobileplandiscount.repository.MobilePlanDiscountJpaEntity;
+import com.udt.udt_dip.mobileplandiscount.repository.MobilePlanDiscountJpaRepository;
+import com.udt.udt_dip.mobileplandiscount.repository.MobilePlanDiscountRepository;
 import org.apache.commons.lang3.ObjectUtils;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
 
+
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -24,6 +30,9 @@ class ContractEntityServiceTest {
     
     @Autowired
     private ContractRepository contractRepository;
+
+    @Autowired
+    private MobilePlanDiscountJpaRepository mobilePlanDiscountJpaRepository;
     
     @Test
     void retrieveContract(){
@@ -50,7 +59,6 @@ class ContractEntityServiceTest {
         UpdateMobilePlanRequest updateMobilePlanRequest = new UpdateMobilePlanRequest();
         updateMobilePlanRequest.setContractId("1");
         updateMobilePlanRequest.setMobilePlanId("2");
-
 
         //when
         contractService.updateMobilePlan(updateMobilePlanRequest);

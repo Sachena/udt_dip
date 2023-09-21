@@ -11,6 +11,8 @@ import com.udt.udt_dip.contract.repository.ContractRepository;
 import com.udt.udt_dip.customer.repository.CustomerRepository;
 import com.udt.udt_dip.mobilephone.repository.MobilePhoneRepository;
 import com.udt.udt_dip.mobileplan.repository.MobilePlanRepository;
+import com.udt.udt_dip.mobileplandiscount.domain.MobilePlanDiscount;
+import com.udt.udt_dip.mobileplandiscount.repository.MobilePlanDiscountRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -24,6 +26,7 @@ public class ContractService {
     private final CustomerRepository customerRepository;
     private final MobilePhoneRepository mobilePhoneRepository;
     private final MobilePlanRepository mobilePlanRepository;
+    private final MobilePlanDiscountRepository mobilePlanDiscountRepository;
 
     public RetrieveContractResponse retrieveContract(RetrieveContractRequest retrieveContractRequest) {
 
@@ -47,11 +50,14 @@ public class ContractService {
         // 요금제 존재여부 => 요금제 정보 조회
         MobilePlan mobilePlan = mobilePlanRepository.findById(contract.getMobilePlanId());
 
+        // 요금제 할인정보 조회
+        MobilePlanDiscount mobilePlanDiscount = mobilePlanDiscountRepository.findById(contract.getMobilePlanDiscountId());
+
         // 계약에서 요금제 정보 변경
         contract.updateMobilePlan(updateMobilePlanRequest.getMobilePlanId());
 
         // 요금제 계산
-        String calculatedPrice = mobilePlan.calculatePrice();
+        String calculatedPrice = mobilePlan.calculatePrice(mobilePlanDiscount);
 
         // 통신비 (최종 통신비) 변경
         contract.updateCommunicationExpense(calculatedPrice);
