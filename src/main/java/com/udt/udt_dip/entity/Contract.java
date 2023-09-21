@@ -18,7 +18,6 @@ public class Contract {
     private Long customerId;
     private Long mobilePhoneId;
     private Long mobilePlanId;
-    private Long mobilePlanDiscountId;
     private LocalDateTime contractChangeDatetime;
     private float communicationExpense;
 

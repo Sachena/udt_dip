@@ -14,6 +14,10 @@ import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.math.NumberUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.CollectionUtils;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -23,7 +27,8 @@ public class ContractService {
     private final CustomerRepository customerRepository;
     private final MobilePhoneRepository mobilePhoneRepository;
     private final MobilePlanRepository mobilePlanRepository;
-    private final MobilePlanDiscountRepository mobilePlanDiscountRepository;
+    private final BillRepository billRepository;
+    private final BillDiscountRepository billDiscountRepository;
 
     @Transactional(readOnly = true)
     public RetrieveContractResponse retrieveContract(RetrieveContractRequest retrieveContractRequest) {
@@ -72,21 +77,32 @@ public class ContractService {
             MobilePlan mobilePlan = mobilePlanRepository.findById(NumberUtils.toLong(updateMobilePlanRequest.getTargetMobilePlanId()))
                     .orElseThrow(() -> new NoMobilePlanException("요금제 정보가 존재하지 않습니다."));
 
-            MobilePlanDiscount mobilePlanDiscount = mobilePlanDiscountRepository.findById(contract.getMobilePlanDiscountId())
-                    .orElseThrow(() -> new RuntimeException("요금 할인 정보가 존재하지 않습니다."));
-
             if (ObjectUtils.equals(contract.getMobilePlanId(), mobilePlan.getId())) {
                 throw new RuntimeException("동일한 요금제로의 변경은 불가합니다.");
             }
 
-            // 계약에서 요금제 정보 변경
-            contract.updateMobilePlan(String.valueOf(mobilePlan.getId()));
+            List<BillDiscount> billDiscountList = billDiscountRepository.findAllById(updateMobilePlanRequest.getBillDiscountIdList()
+                            .stream().map(NumberUtils::toLong).collect(Collectors.toList()));
+
+            float discountPrice = 0;
+            if (!CollectionUtils.isEmpty(billDiscountList)) {
+                for (BillDiscount billDiscount : billDiscountList) {
+                    if ("price".equals(billDiscount.getType())) {
+                        discountPrice += billDiscount.getPrice();
+                    } else if ("ratio".equals(billDiscount.getType())) {
+                        discountPrice += mobilePlan.getPrice() * billDiscount.getRatio();
+                    }
+                }
+            }
 
             // 요금 계산
-            float calculatedPrice = (mobilePlan.getPrice() * mobilePlanDiscount.getRatio()) / 100;
+            float calculatedPrice = mobilePlan.getPrice() - discountPrice;
 
+            // 계약에서 요금제 정보 변경
+            contract.updateMobilePlan(String.valueOf(mobilePlan.getId()));
             // 통신비 (최종 통신비) 변경
             contract.updateCommunicationExpense(calculatedPrice);
+
         } catch (Exception e) {
             throw new RuntimeException("요금제 변경을 실패했습니다.");
         }
