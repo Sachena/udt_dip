@@ -1,11 +1,10 @@
 package com.udt.udt_dip.service;
 
-import com.udt.udt_dip.contract.application.service.ContractService;
+import com.udt.udt_dip.contract.application.usecase.ContractService;
 import com.udt.udt_dip.contract.adapter.in.web.model.RetrieveContractRequest;
 import com.udt.udt_dip.contract.adapter.in.web.model.UpdateMobilePlanRequest;
 import com.udt.udt_dip.contract.adapter.out.persistence.entity.ContractPersistenceEntity;
 import com.udt.udt_dip.contract.adapter.out.persistence.repository.ContractPersistenceRepository;
-import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.math.NumberUtils;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

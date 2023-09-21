@@ -1,4 +1,4 @@
-package com.udt.udt_dip.contract.application.service;
+package com.udt.udt_dip.contract.application.usecase;
 
 import com.udt.udt_dip.contract.application.port.in.ContractInputPort;
 import com.udt.udt_dip.contract.application.port.out.ContractOutputPort;
