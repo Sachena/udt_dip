@@ -13,19 +13,12 @@ public class Contract {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String phoneNumber;
-
     private LocalDateTime firstContractDate;
-
     private Long customerId;
-
     private Long mobilePhoneId;
-
     private Long mobilePlanId;
-
     private LocalDateTime contractChangeDatetime;
-
     private String communicationExpense;
 
     public void updateMobilePlan(String targetMobilePlanId) {
