@@ -5,7 +5,6 @@ import com.udt.udt_dip.contract.adapter.in.web.model.RetrieveContractRequest;
 import com.udt.udt_dip.contract.adapter.in.web.model.RetrieveContractResponse;
 import com.udt.udt_dip.contract.adapter.in.web.model.UpdateMobilePlanRequest;
 import com.udt.udt_dip.contract.application.port.in.ContractInputPort;
-import com.udt.udt_dip.contract.application.service.ContractService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
