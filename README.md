@@ -1,6 +1,7 @@
 # ERD
 
-![image](https://github.com/Sachena/udt_dip/assets/61732056/f3bb9bf7-12b1-4c54-8a0d-f90b941442a5)
+![image](https://github.com/Sachena/udt_dip/assets/61732056/af68f1d2-e38a-4d5e-a2d1-ce00ac93dfed)
+
 
 
 
