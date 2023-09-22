@@ -4,5 +4,5 @@ import com.udt.udt_dip.mobileplan.domain.model.MobilePlan;
 
 public interface MobilePlanOutputPort {
 
-    MobilePlan findById(Long id);
+    MobilePlan retrieve(Long id);
 }

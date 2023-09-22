@@ -4,5 +4,5 @@ import com.udt.udt_dip.mobilephone.domain.model.MobilePhone;
 
 public interface MobilePhoneOutputPort {
 
-    MobilePhone findById(Long id);
+    MobilePhone retrieve(Long id);
 }

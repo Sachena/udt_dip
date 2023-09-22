@@ -15,7 +15,7 @@ public class MobilePlanPersistenceAdapter implements MobilePlanOutputPort {
     private final MobilePlanPersistenceMapper mobilePlanPersistenceMapper;
 
     @Override
-    public MobilePlan findById(Long id) {
+    public MobilePlan retrieve(Long id) {
 
         return mobilePlanPersistenceMapper.fromPersistenceToDomain(mobilePhonePersistenceRepository.findById(id)
                 .orElseThrow(() -> new NoMobilePlanException("요금제 정보가 존재하지 않습니다.")));

@@ -24,17 +24,14 @@ public class ContractPersistenceEntity {
     private Long mobilePhoneId;
     private Long mobilePlanId;
     private LocalDateTime contractChangeDatetime;
-    private String communicationExpense;
-
 
     public void updateByDomain(Contract contract) {
         this.id = contract.getId();
         this.phoneNumber = contract.getPhoneNumber();
         this.firstContractDate = contract.getFirstContractDate();
-        this.customerId = contract.getContractor().getCustomerId();
-        this.mobilePhoneId = contract.getInUseMobilePhone().getMobilePhoneId();
-        this.mobilePlanId = contract.getSubscriptionMobilePlan().getMobilePlanId();
+        this.customerId = contract.getCustomerId();
+        this.mobilePhoneId = contract.getMobilePhoneId();
+        this.mobilePlanId = contract.getMobilePlanId();
         this.contractChangeDatetime = contract.getContractChangeDatetime();
-        this.communicationExpense = contract.getCommunicationExpense();
     }
 }

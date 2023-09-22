@@ -15,7 +15,7 @@ public class MobilePhonePersistenceAdapter implements MobilePhoneOutputPort {
     private final MobilePhonePersistenceMapper mobilePhonePersistenceMapper;
 
     @Override
-    public MobilePhone findById(Long id) {
+    public MobilePhone retrieve(Long id) {
 
         return mobilePhonePersistenceMapper.fromPersistenceToDomain(mobilePhonePersistenceRepository.findById(id)
                 .orElseThrow(() -> new NoMobilePhoneException("휴대폰 단말 정보가 존재하지 않습니다.")));

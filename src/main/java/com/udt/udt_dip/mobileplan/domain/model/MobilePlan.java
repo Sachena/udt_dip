@@ -9,6 +9,6 @@ public class MobilePlan {
 
     private Long id;
     private String name;
-    private String price;
+    private int price;
     private String description;
 }

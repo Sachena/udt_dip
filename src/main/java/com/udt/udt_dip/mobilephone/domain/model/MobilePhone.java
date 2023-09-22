@@ -13,5 +13,5 @@ public class MobilePhone {
     private String name;
     private String usim;
     private String description;
-    private String price;
+    private int price;
 }
