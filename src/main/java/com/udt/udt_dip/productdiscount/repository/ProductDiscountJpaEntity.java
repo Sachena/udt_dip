@@ -1,20 +1,22 @@
-package com.udt.udt_dip.mobileplandiscount.repository;
+package com.udt.udt_dip.productdiscount.repository;
 
 import lombok.Getter;
 
 import javax.persistence.*;
 
 @Getter
+@Table(name = "product_discount")
 @Entity
-@Table(name = "mobile_plan_discount")
-public class MobilePlanDiscountJpaEntity {
+public class ProductDiscountJpaEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private Long mobilePhoneId;
     private Long mobilePlanId;
+    private String type;
     private String name;
+    private int price;
     private float ratio;
     private String description;
-
 }

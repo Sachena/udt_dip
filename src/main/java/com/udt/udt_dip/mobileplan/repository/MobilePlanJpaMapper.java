@@ -10,9 +10,9 @@ public class MobilePlanJpaMapper {
     public MobilePlan fromEntityToDomain(MobilePlanJpaEntity mobilePlanJpaEntity) {
 
         return new MobilePlan(
-            String.valueOf(mobilePlanJpaEntity.getId()),
+                mobilePlanJpaEntity.getId(),
             mobilePlanJpaEntity.getName(),
-            mobilePlanJpaEntity.getPrice(),
+            Integer.valueOf(mobilePlanJpaEntity.getPrice()),
             mobilePlanJpaEntity.getDescription()
         );
 
