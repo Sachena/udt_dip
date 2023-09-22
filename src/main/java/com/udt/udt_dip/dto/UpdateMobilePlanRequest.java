@@ -9,5 +9,5 @@ public class UpdateMobilePlanRequest {
 
     private String targetContractId;
     private String targetMobilePlanId;
-    private List<String> billDiscountIdList;
+    private List<String> ProductDiscountIdList;
 }

@@ -1,6 +1,7 @@
 package com.udt.udt_dip.controller;
 
 
+import com.udt.udt_dip.dto.RetrieveContractInUseMobilePlan;
 import com.udt.udt_dip.dto.RetrieveContractRequest;
 import com.udt.udt_dip.dto.RetrieveContractResponse;
 import com.udt.udt_dip.dto.UpdateMobilePlanRequest;
@@ -19,6 +20,11 @@ public class ContractController {
     @GetMapping("/v1/contract")
     public RetrieveContractResponse retrieveContract(RetrieveContractRequest retrieveContractRequest){
         return contractService.retrieveContract(retrieveContractRequest);
+    }
+
+    @GetMapping("/v1/contract/mobile/plan")
+    public RetrieveContractInUseMobilePlan retrieveContractInUseMobilePlan(RetrieveContractRequest retrieveContractRequest){
+        return contractService.retrieveContractInUseMobilePlan(retrieveContractRequest);
     }
 
     @PostMapping("/v1/contract")

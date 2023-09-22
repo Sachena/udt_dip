@@ -19,17 +19,9 @@ public class Contract {
     private Long mobilePhoneId;
     private Long mobilePlanId;
     private LocalDateTime contractChangeDatetime;
-    private float communicationExpense;
 
     public void updateMobilePlan(String targetMobilePlanId) {
         this.mobilePlanId = NumberUtils.toLong(targetMobilePlanId);
         this.contractChangeDatetime = LocalDateTime.now();
     }
-
-    public void updateCommunicationExpense(float communicationExpense) {
-        this.communicationExpense = communicationExpense;
-    }
-
-
-
 }

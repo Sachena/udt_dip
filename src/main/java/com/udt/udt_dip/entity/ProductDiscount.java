@@ -1,6 +1,5 @@
 package com.udt.udt_dip.entity;
 
-
 import lombok.Getter;
 
 import javax.persistence.Entity;
@@ -10,16 +9,16 @@ import javax.persistence.Id;
 
 @Getter
 @Entity
-public class Bill {
+public class ProductDiscount {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Long contractId;
     private Long mobilePhoneId;
     private Long mobilePlanId;
-    private Long billDiscountId;
-    private float basePrice;
-    private float actualPrice;
-    private float discountPrice;
+    private String type;
+    private String name;
+    private int price;
+    private float ratio;
+    private String description;
 }
