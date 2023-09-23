@@ -32,41 +32,48 @@ public class ContractService {
     private final ProductDiscountRepository productDiscountRepository;
 
     @Transactional(readOnly = true)
-    public RetrieveContractResponse retrieveContract(RetrieveContractRequest retrieveContractRequest) {
+    public RetrieveContractResponse retrieveContract(
+        RetrieveContractRequest retrieveContractRequest) {
 
         try {
-            Contract contract = contractRepository.findById(NumberUtils.toLong(retrieveContractRequest.getContractId()))
-                    .orElseThrow(() -> new NoContractException("존재하지 않는 계약 정보입니다."));
+            Contract contract = contractRepository
+                .findById(NumberUtils.toLong(retrieveContractRequest.getContractId()))
+                .orElseThrow(() -> new NoContractException("존재하지 않는 계약 정보입니다."));
 
             Customer customer = customerRepository.findById(contract.getCustomerId())
-                    .orElseThrow(() -> new NoCustomerException("고객 정보가 존재하지 않습니다."));
+                .orElseThrow(() -> new NoCustomerException("고객 정보가 존재하지 않습니다."));
 
             MobilePhone mobilePhone = mobilePhoneRepository.findById(contract.getMobilePhoneId())
-                    .orElseThrow(() -> new NoMobilePhoneException("휴대폰 단말 정보가 존재하지 않습니다."));
+                .orElseThrow(() -> new NoMobilePhoneException("휴대폰 단말 정보가 존재하지 않습니다."));
 
             MobilePlan mobilePlan = mobilePlanRepository.findById(contract.getMobilePlanId())
-                    .orElseThrow(() -> new NoMobilePlanException("요금제 정보가 존재하지 않습니다."));
+                .orElseThrow(() -> new NoMobilePlanException("요금제 정보가 존재하지 않습니다."));
 
-            List<ContractDiscount> contractDiscountList = contractDiscountRepository.findAllByContractId(contract.getId());
+            List<ContractDiscount> contractDiscountList = contractDiscountRepository
+                .findAllByContractId(contract.getId());
 
             float contractBillAmount = mobilePlan.getPrice();
+
             if (!CollectionUtils.isEmpty(contractDiscountList)) {
 
-                List<ProductDiscount> productDiscountList = productDiscountRepository.findAllById(contractDiscountList
-                        .stream().map(ContractDiscount::getProductDiscountId).collect(Collectors.toList()));
+                List<ProductDiscount> productDiscountList = productDiscountRepository
+                    .findAllById(contractDiscountList
+                        .stream().map(ContractDiscount::getProductDiscountId)
+                        .collect(Collectors.toList()));
 
                 float discountPrice = 0;
                 for (ProductDiscount productDiscount : productDiscountList) {
                     if ("price".equals(productDiscount.getType())) {
                         discountPrice += productDiscount.getPrice();
                     } else if ("ratio".equals(productDiscount.getType())) {
-                        discountPrice += mobilePlan.getPrice() * productDiscount.getRatio();
+                        discountPrice += mobilePlan.getPrice() * (productDiscount.getRatio() / 100);
                     }
                 }
                 contractBillAmount -= discountPrice;
             }
 
-            return new RetrieveContractResponse(contract, customer, mobilePhone, mobilePlan, contractBillAmount);
+            return new RetrieveContractResponse(contract, customer, mobilePhone, mobilePlan,
+                contractBillAmount);
 
         } catch (Exception e) {
             throw new RuntimeException("계약 정보를 확인할 수 없습니다.");
@@ -74,17 +81,19 @@ public class ContractService {
     }
 
     @Transactional(readOnly = true)
-    public RetrieveContractInUseMobilePlan retrieveContractInUseMobilePlan(RetrieveContractRequest retrieveContractRequest) {
+    public RetrieveContractInUseMobilePlan retrieveContractInUseMobilePlan(
+        RetrieveContractRequest retrieveContractRequest) {
 
         try {
-            Contract contract = contractRepository.findById(NumberUtils.toLong(retrieveContractRequest.getContractId()))
-                    .orElseThrow(() -> new NoContractException("존재하지 않는 계약 정보입니다."));
+            Contract contract = contractRepository
+                .findById(NumberUtils.toLong(retrieveContractRequest.getContractId()))
+                .orElseThrow(() -> new NoContractException("존재하지 않는 계약 정보입니다."));
 
             Customer customer = customerRepository.findById(contract.getCustomerId())
-                    .orElseThrow(() -> new NoCustomerException("고객 정보가 존재하지 않습니다."));
+                .orElseThrow(() -> new NoCustomerException("고객 정보가 존재하지 않습니다."));
 
             MobilePlan mobilePlan = mobilePlanRepository.findById(contract.getMobilePlanId())
-                    .orElseThrow(() -> new NoMobilePlanException("요금제 정보가 존재하지 않습니다."));
+                .orElseThrow(() -> new NoMobilePlanException("요금제 정보가 존재하지 않습니다."));
 
             return new RetrieveContractInUseMobilePlan(contract, customer, mobilePlan);
 
@@ -98,12 +107,14 @@ public class ContractService {
 
         try {
             // 변경할 계약 정보 가져오기
-            Contract contract = contractRepository.findById(NumberUtils.toLong(updateMobilePlanRequest.getTargetContractId()))
-                    .orElseThrow(() -> new NoContractException("존재하지 않는 계약 정보입니다."));
+            Contract contract = contractRepository
+                .findById(NumberUtils.toLong(updateMobilePlanRequest.getTargetContractId()))
+                .orElseThrow(() -> new NoContractException("존재하지 않는 계약 정보입니다."));
 
             // 요금제 존재여부 => 요금제 정보 조회
-            MobilePlan mobilePlan = mobilePlanRepository.findById(NumberUtils.toLong(updateMobilePlanRequest.getTargetMobilePlanId()))
-                    .orElseThrow(() -> new NoMobilePlanException("요금제 정보가 존재하지 않습니다."));
+            MobilePlan mobilePlan = mobilePlanRepository
+                .findById(NumberUtils.toLong(updateMobilePlanRequest.getTargetMobilePlanId()))
+                .orElseThrow(() -> new NoMobilePlanException("요금제 정보가 존재하지 않습니다."));
 
             if (ObjectUtils.equals(contract.getMobilePlanId(), mobilePlan.getId())) {
                 throw new RuntimeException("동일한 요금제로의 변경은 불가합니다.");

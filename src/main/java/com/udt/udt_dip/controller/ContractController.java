@@ -18,17 +18,19 @@ public class ContractController {
     private final ContractService contractService;
 
     @GetMapping("/v1/contract")
-    public RetrieveContractResponse retrieveContract(RetrieveContractRequest retrieveContractRequest){
+    public RetrieveContractResponse retrieveContract(
+        RetrieveContractRequest retrieveContractRequest) {
         return contractService.retrieveContract(retrieveContractRequest);
     }
 
     @GetMapping("/v1/contract/mobile/plan")
-    public RetrieveContractInUseMobilePlan retrieveContractInUseMobilePlan(RetrieveContractRequest retrieveContractRequest){
+    public RetrieveContractInUseMobilePlan retrieveContractInUseMobilePlan(
+        RetrieveContractRequest retrieveContractRequest) {
         return contractService.retrieveContractInUseMobilePlan(retrieveContractRequest);
     }
 
     @PostMapping("/v1/contract")
-    public void updateMobilePlan(UpdateMobilePlanRequest updateMobilePlanRequest){
+    public void updateMobilePlan(UpdateMobilePlanRequest updateMobilePlanRequest) {
         contractService.updateMobilePlan(updateMobilePlanRequest);
     }
 

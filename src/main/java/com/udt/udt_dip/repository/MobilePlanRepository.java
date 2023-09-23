@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface MobilePlanRepository extends JpaRepository<MobilePlan, Long> {
+
 }

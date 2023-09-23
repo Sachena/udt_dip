@@ -17,7 +17,8 @@ public class RetrieveContractInUseMobilePlan {
     private String mobilePlanName;
     private String mobilePlanPrice;
 
-    public RetrieveContractInUseMobilePlan(Contract contract, Customer customer, MobilePlan mobilePlan) {
+    public RetrieveContractInUseMobilePlan(Contract contract, Customer customer,
+        MobilePlan mobilePlan) {
         this.contractId = String.valueOf(contract.getId());
         this.phoneNumber = contract.getPhoneNumber();
         this.contractChangeDatetime = contract.getContractChangeDatetime();
