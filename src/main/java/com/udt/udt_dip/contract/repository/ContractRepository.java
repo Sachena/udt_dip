@@ -7,5 +7,6 @@ public interface ContractRepository {
     Contract findById(String id);
 
     void insert(Contract contract);
+
     void update(Contract contract);
 }

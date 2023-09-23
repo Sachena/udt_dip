@@ -33,7 +33,8 @@ public class Contract {
         }
     }
 
-    public float calculateContractBillAmount(MobilePlan mobilePlan, List<ProductDiscount> productDiscountList) {
+    public float calculateContractBillAmount(MobilePlan mobilePlan,
+        List<ProductDiscount> productDiscountList) {
 
         float contractBillAmount = mobilePlan.getPrice();
         float discountPrice = 0;

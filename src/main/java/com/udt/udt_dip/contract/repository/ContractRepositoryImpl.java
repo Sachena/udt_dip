@@ -20,14 +20,15 @@ public class ContractRepositoryImpl implements ContractRepository {
 
     @Override
     public Contract findById(String id) {
-        ContractJpaEntity contractPersistenceEntity = contractJpaRepository.findById(Long.valueOf(id))
-                .orElseThrow(() -> new NoContractException("존재하지 않는 계약 정보입니다."));
+        ContractJpaEntity contractPersistenceEntity = contractJpaRepository
+            .findById(Long.valueOf(id))
+            .orElseThrow(() -> new NoContractException("존재하지 않는 계약 정보입니다."));
 
         List<ContractDiscountJpaEntity> contractDiscountPersistenceEntityList =
-                contractDiscountJpaRepository.findAllByContractId(contractPersistenceEntity.getId());
+            contractDiscountJpaRepository.findAllByContractId(contractPersistenceEntity.getId());
 
         return contractJpaMapper.fromEntityToDomain(contractPersistenceEntity,
-                contractDiscountPersistenceEntityList);
+            contractDiscountPersistenceEntityList);
     }
 
     @Override

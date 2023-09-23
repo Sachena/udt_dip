@@ -33,38 +33,50 @@ public class ContractService {
     private final ProductDiscountRepository productDiscountRepository;
 
     @Transactional(readOnly = true)
-    public RetrieveContractResponse retrieveContract(RetrieveContractRequest retrieveContractRequest) {
+    public RetrieveContractResponse retrieveContract(
+        RetrieveContractRequest retrieveContractRequest) {
 
-        try{
+        try {
 
-            Contract contract = contractRepository.findById(retrieveContractRequest.getContractId());
+            Contract contract = contractRepository
+                .findById(retrieveContractRequest.getContractId());
 
-            Customer customer = customerRepository.findById(String.valueOf(contract.getCustomerId()));
+            Customer customer = customerRepository
+                .findById(String.valueOf(contract.getCustomerId()));
 
-            MobilePhone mobilePhone = mobilePhoneRepository.findById(String.valueOf(contract.getMobilePhoneId()));
+            MobilePhone mobilePhone = mobilePhoneRepository
+                .findById(String.valueOf(contract.getMobilePhoneId()));
 
-            MobilePlan mobilePlan = mobilePlanRepository.findById(String.valueOf(contract.getMobilePlanId()));
+            MobilePlan mobilePlan = mobilePlanRepository
+                .findById(String.valueOf(contract.getMobilePlanId()));
 
-            List<ProductDiscount> productDiscountList = productDiscountRepository.retrieveAllByIdList(
-                    contract.getContractDiscountList().stream().map(ContractDiscount::getId).collect(Collectors.toList()));
+            List<ProductDiscount> productDiscountList = productDiscountRepository
+                .retrieveAllByIdList(
+                    contract.getContractDiscountList().stream().map(ContractDiscount::getId)
+                        .collect(Collectors.toList()));
 
             return new RetrieveContractResponse(contract, customer, mobilePhone, mobilePlan,
-                    String.valueOf(contract.calculateContractBillAmount(mobilePlan, productDiscountList)) );
+                String.valueOf(
+                    contract.calculateContractBillAmount(mobilePlan, productDiscountList)));
 
-        } catch (Exception e){
+        } catch (Exception e) {
             throw new RuntimeException("계약 정보를 확인할 수 없습니다.");
         }
 
     }
 
     @Transactional(readOnly = true)
-    public RetrieveContractInUseMobilePlan retrieveContractInUseMobilePlan(RetrieveContractRequest retrieveContractRequest) {
+    public RetrieveContractInUseMobilePlan retrieveContractInUseMobilePlan(
+        RetrieveContractRequest retrieveContractRequest) {
 
         try {
 
-            Contract contract = contractRepository.findById(retrieveContractRequest.getContractId());
-            Customer customer = customerRepository.findById(String.valueOf(contract.getCustomerId()));
-            MobilePlan mobilePlan = mobilePlanRepository.findById(String.valueOf(contract.getMobilePlanId()));
+            Contract contract = contractRepository
+                .findById(retrieveContractRequest.getContractId());
+            Customer customer = customerRepository
+                .findById(String.valueOf(contract.getCustomerId()));
+            MobilePlan mobilePlan = mobilePlanRepository
+                .findById(String.valueOf(contract.getMobilePlanId()));
 
             return new RetrieveContractInUseMobilePlan(contract, customer, mobilePlan);
 
@@ -78,9 +90,11 @@ public class ContractService {
 
         try {
             // 변경할 계약 정보 가져오기 (요금제 존재여부 검사)
-            Contract contract = contractRepository.findById(updateMobilePlanRequest.getContractId());
+            Contract contract = contractRepository
+                .findById(updateMobilePlanRequest.getContractId());
 
-            MobilePlan mobilePlan = mobilePlanRepository.findById(String.valueOf(updateMobilePlanRequest.getMobilePlanId()));
+            MobilePlan mobilePlan = mobilePlanRepository
+                .findById(String.valueOf(updateMobilePlanRequest.getMobilePlanId()));
 
             // 계약에서 요금제 정보 변경
             contract.updateInUseMobilePlan(mobilePlan.getId());

@@ -17,7 +17,8 @@ public class ContractController {
     private final ContractService contractService;
 
     @GetMapping("/v1/contract")
-    public RetrieveContractResponse retrieveContract(RetrieveContractRequest retrieveContractRequest) {
+    public RetrieveContractResponse retrieveContract(
+        RetrieveContractRequest retrieveContractRequest) {
         return contractService.retrieveContract(retrieveContractRequest);
     }
 

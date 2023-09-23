@@ -13,34 +13,36 @@ import java.util.List;
 public class ContractJpaMapper {
 
     public Contract fromEntityToDomain(ContractJpaEntity contractPersistenceEntity,
-                                            List<ContractDiscountJpaEntity> contractDiscountPersistenceEntityList) {
+        List<ContractDiscountJpaEntity> contractDiscountPersistenceEntityList) {
 
         return Contract.builder()
-                .id(contractPersistenceEntity.getId())
-                .phoneNumber(contractPersistenceEntity.getPhoneNumber())
-                .firstContractDate(contractPersistenceEntity.getFirstContractDate())
-                .customerId(contractPersistenceEntity.getCustomerId())
-                .mobilePhoneId(contractPersistenceEntity.getMobilePhoneId())
-                .mobilePlanId(contractPersistenceEntity.getMobilePlanId())
-                .contractChangeDatetime(contractPersistenceEntity.getContractChangeDatetime())
-                .contractDiscountList(this.fromEntityListToDomainList(contractDiscountPersistenceEntityList))
-                .build();
+            .id(contractPersistenceEntity.getId())
+            .phoneNumber(contractPersistenceEntity.getPhoneNumber())
+            .firstContractDate(contractPersistenceEntity.getFirstContractDate())
+            .customerId(contractPersistenceEntity.getCustomerId())
+            .mobilePhoneId(contractPersistenceEntity.getMobilePhoneId())
+            .mobilePlanId(contractPersistenceEntity.getMobilePlanId())
+            .contractChangeDatetime(contractPersistenceEntity.getContractChangeDatetime())
+            .contractDiscountList(
+                this.fromEntityListToDomainList(contractDiscountPersistenceEntityList))
+            .build();
     }
 
     public ContractJpaEntity fromDomainToEntity(Contract contract) {
 
         return ContractJpaEntity.builder()
-                .id(contract.getId())
-                .phoneNumber(contract.getPhoneNumber())
-                .firstContractDate(contract.getFirstContractDate())
-                .customerId(contract.getCustomerId())
-                .mobilePhoneId(contract.getMobilePhoneId())
-                .mobilePlanId(contract.getMobilePlanId())
-                .contractChangeDatetime(contract.getContractChangeDatetime())
-                .build();
+            .id(contract.getId())
+            .phoneNumber(contract.getPhoneNumber())
+            .firstContractDate(contract.getFirstContractDate())
+            .customerId(contract.getCustomerId())
+            .mobilePhoneId(contract.getMobilePhoneId())
+            .mobilePlanId(contract.getMobilePlanId())
+            .contractChangeDatetime(contract.getContractChangeDatetime())
+            .build();
     }
 
-    public List<ContractDiscount> fromEntityListToDomainList(List<ContractDiscountJpaEntity> contractDiscountPersistenceEntityList) {
+    public List<ContractDiscount> fromEntityListToDomainList(
+        List<ContractDiscountJpaEntity> contractDiscountPersistenceEntityList) {
 
         List<ContractDiscount> contractDiscountList = new ArrayList<>();
 
@@ -50,14 +52,16 @@ public class ContractJpaMapper {
 
         return contractDiscountList;
     }
-    public ContractDiscount fromEntityToDomain(ContractDiscountJpaEntity contractDiscountPersistenceEntity) {
+
+    public ContractDiscount fromEntityToDomain(
+        ContractDiscountJpaEntity contractDiscountPersistenceEntity) {
 
         return ContractDiscount.builder()
-                .id(contractDiscountPersistenceEntity.getId())
-                .contractId(contractDiscountPersistenceEntity.getContractId())
-                .mobilePhoneId(contractDiscountPersistenceEntity.getMobilePhoneId())
-                .mobilePlanId(contractDiscountPersistenceEntity.getMobilePlanId())
-                .productDiscountId(contractDiscountPersistenceEntity.getProductDiscountId())
-                .build();
+            .id(contractDiscountPersistenceEntity.getId())
+            .contractId(contractDiscountPersistenceEntity.getContractId())
+            .mobilePhoneId(contractDiscountPersistenceEntity.getMobilePhoneId())
+            .mobilePlanId(contractDiscountPersistenceEntity.getMobilePlanId())
+            .productDiscountId(contractDiscountPersistenceEntity.getProductDiscountId())
+            .build();
     }
 }

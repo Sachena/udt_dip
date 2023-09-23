@@ -23,7 +23,8 @@ public class RetrieveContractResponse {
     private String mobilePlanName;
     private String mobilePlanPrice;
 
-    public RetrieveContractResponse(Contract contract, Customer customer, MobilePhone mobilePhone, MobilePlan mobilePlan, String communicationExpense) {
+    public RetrieveContractResponse(Contract contract, Customer customer, MobilePhone mobilePhone,
+        MobilePlan mobilePlan, String communicationExpense) {
         this.contractId = String.valueOf(contract.getId());
         this.phoneNumber = mobilePhone.getId();
         this.firstContractDate = contract.getFirstContractDate();

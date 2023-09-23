@@ -21,7 +21,7 @@ public class ProductDiscountRepositoryImpl implements ProductDiscountRepository 
     public List<ProductDiscount> retrieveAllByIdList(List<Long> idList) {
 
         return productDiscountJpaMapper.fromEntityListToDomainList(
-                productDiscountJpaRepository.findAllById(idList));
+            productDiscountJpaRepository.findAllById(idList));
     }
 
 }

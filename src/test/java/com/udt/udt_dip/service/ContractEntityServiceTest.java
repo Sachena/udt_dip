@@ -21,27 +21,28 @@ class ContractEntityServiceTest {
 
     @Autowired
     private ContractService contractService;
-    
+
     @Autowired
     private ContractRepository contractRepository;
 
     @Autowired
     private ProductDiscountJpaRepository productDiscountJpaRepository;
-    
+
     @Test
-    void retrieveContract(){
+    void retrieveContract() {
 
         //given
         RetrieveContractRequest retrieveContractRequest = new RetrieveContractRequest();
         retrieveContractRequest.setContractId("1");
 
         //when
-        RetrieveContractResponse retrieveContractResponse = contractService.retrieveContract(retrieveContractRequest);
+        RetrieveContractResponse retrieveContractResponse = contractService
+            .retrieveContract(retrieveContractRequest);
 
         //then
         assertEquals(retrieveContractResponse.getContractId(), "1");
-        assertEquals(retrieveContractResponse.getCustomerName() , "테스터");
-        assertEquals(retrieveContractResponse.getMobilePhoneName(),"갤럭시 Z 폴드3 512G");
+        assertEquals(retrieveContractResponse.getCustomerName(), "테스터");
+        assertEquals(retrieveContractResponse.getMobilePhoneName(), "갤럭시 Z 폴드3 512G");
         assertEquals(retrieveContractResponse.getCommunicationExpense(), "63750.0");
 
 
@@ -61,8 +62,8 @@ class ContractEntityServiceTest {
         //then
         Contract contract = contractRepository.findById("1");
 
-        assertEquals("1",String.valueOf(contract.getId()));
-        assertEquals("2",String.valueOf(contract.getMobilePlanId())  );
+        assertEquals("1", String.valueOf(contract.getId()));
+        assertEquals("2", String.valueOf(contract.getMobilePlanId()));
 
     }
 }

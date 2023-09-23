@@ -8,7 +8,9 @@ import java.util.List;
 
 @Component
 public class ProductDiscountJpaMapper {
-    public List<ProductDiscount> fromEntityListToDomainList(List<ProductDiscountJpaEntity> productDiscountJpaEntityList) {
+
+    public List<ProductDiscount> fromEntityListToDomainList(
+        List<ProductDiscountJpaEntity> productDiscountJpaEntityList) {
 
         List<ProductDiscount> productDiscountList = new ArrayList<>();
 
@@ -22,14 +24,14 @@ public class ProductDiscountJpaMapper {
     public ProductDiscount fromEntityToDomain(ProductDiscountJpaEntity productDiscountJpaEntity) {
 
         return ProductDiscount.builder()
-                .id(productDiscountJpaEntity.getId())
-                .mobilePhoneId(productDiscountJpaEntity.getMobilePhoneId())
-                .mobilePlanId(productDiscountJpaEntity.getMobilePlanId())
-                .type(productDiscountJpaEntity.getType())
-                .name(productDiscountJpaEntity.getName())
-                .price(productDiscountJpaEntity.getPrice())
-                .ratio(productDiscountJpaEntity.getRatio())
-                .description(productDiscountJpaEntity.getDescription())
-                .build();
+            .id(productDiscountJpaEntity.getId())
+            .mobilePhoneId(productDiscountJpaEntity.getMobilePhoneId())
+            .mobilePlanId(productDiscountJpaEntity.getMobilePlanId())
+            .type(productDiscountJpaEntity.getType())
+            .name(productDiscountJpaEntity.getName())
+            .price(productDiscountJpaEntity.getPrice())
+            .ratio(productDiscountJpaEntity.getRatio())
+            .description(productDiscountJpaEntity.getDescription())
+            .build();
     }
 }
