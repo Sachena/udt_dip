@@ -29,21 +29,24 @@ public class ContractPersistenceAdapter implements ContractOutputPort {
     @Override
     public Contract retrieve(Long id) {
 
-        ContractPersistenceEntity contractPersistenceEntity = contractPersistenceRepository.findById(id)
-                .orElseThrow(() -> new NoContractException("존재하지 않는 계약 정보입니다."));
+        ContractPersistenceEntity contractPersistenceEntity = contractPersistenceRepository
+            .findById(id)
+            .orElseThrow(() -> new NoContractException("존재하지 않는 계약 정보입니다."));
 
         List<ContractDiscountPersistenceEntity> contractDiscountPersistenceEntityList =
-                contractDiscountPersistenceRepository.findAllByContractId(contractPersistenceEntity.getId());
+            contractDiscountPersistenceRepository
+                .findAllByContractId(contractPersistenceEntity.getId());
 
         return contractPersistenceMapper.fromPersistenceToDomain(contractPersistenceEntity,
-                contractDiscountPersistenceEntityList);
+            contractDiscountPersistenceEntityList);
     }
 
     @Override
     public void update(Contract contract) {
 
-        ContractPersistenceEntity contractPersistenceEntity = contractPersistenceRepository.findById(contract.getId())
-                .orElseThrow(() -> new NoContractException("존재하지 않는 계약 정보입니다."));
+        ContractPersistenceEntity contractPersistenceEntity = contractPersistenceRepository
+            .findById(contract.getId())
+            .orElseThrow(() -> new NoContractException("존재하지 않는 계약 정보입니다."));
 
         contractPersistenceEntity.updateByDomain(contract);
     }

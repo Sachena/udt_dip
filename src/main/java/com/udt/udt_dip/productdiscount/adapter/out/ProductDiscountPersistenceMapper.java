@@ -10,7 +10,8 @@ import java.util.List;
 @Component
 public class ProductDiscountPersistenceMapper {
 
-    public List<ProductDiscount> fromPersistenceListToDomainList(List<ProductDiscountPersistenceEntity> productDiscountPersistenceEntityList) {
+    public List<ProductDiscount> fromPersistenceListToDomainList(
+        List<ProductDiscountPersistenceEntity> productDiscountPersistenceEntityList) {
 
         List<ProductDiscount> productDiscountList = new ArrayList<>();
 
@@ -21,17 +22,18 @@ public class ProductDiscountPersistenceMapper {
         return productDiscountList;
     }
 
-    public ProductDiscount fromPersistenceToDomain(ProductDiscountPersistenceEntity productDiscountPersistenceEntity) {
+    public ProductDiscount fromPersistenceToDomain(
+        ProductDiscountPersistenceEntity productDiscountPersistenceEntity) {
 
         return ProductDiscount.builder()
-                .id(productDiscountPersistenceEntity.getId())
-                .mobilePhoneId(productDiscountPersistenceEntity.getMobilePhoneId())
-                .mobilePlanId(productDiscountPersistenceEntity.getMobilePlanId())
-                .type(productDiscountPersistenceEntity.getType())
-                .name(productDiscountPersistenceEntity.getName())
-                .price(productDiscountPersistenceEntity.getPrice())
-                .ratio(productDiscountPersistenceEntity.getRatio())
-                .description(productDiscountPersistenceEntity.getDescription())
-                .build();
+            .id(productDiscountPersistenceEntity.getId())
+            .mobilePhoneId(productDiscountPersistenceEntity.getMobilePhoneId())
+            .mobilePlanId(productDiscountPersistenceEntity.getMobilePlanId())
+            .type(productDiscountPersistenceEntity.getType())
+            .name(productDiscountPersistenceEntity.getName())
+            .price(productDiscountPersistenceEntity.getPrice())
+            .ratio(productDiscountPersistenceEntity.getRatio())
+            .description(productDiscountPersistenceEntity.getDescription())
+            .build();
     }
 }

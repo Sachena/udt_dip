@@ -26,7 +26,7 @@ public class RetrieveContractResponse {
     private String contractBillAmount;
 
     public RetrieveContractResponse(Contract contract, Customer customer, MobilePhone mobilePhone,
-                                    MobilePlan mobilePlan, float contractBillAmount) {
+        MobilePlan mobilePlan, float contractBillAmount) {
 
         this.contractId = String.valueOf(contract.getId());
         this.phoneNumber = contract.getPhoneNumber();

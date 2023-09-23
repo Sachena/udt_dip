@@ -10,9 +10,9 @@ public class CustomerPersistenceMapper {
     public Customer fromPersistenceToDomain(CustomerPersistenceEntity customerPersistenceEntity) {
 
         return Customer.builder()
-                .id(customerPersistenceEntity.getId())
-                .name(customerPersistenceEntity.getName())
-                .residentNumber(customerPersistenceEntity.getResidentNumber())
-                .build();
+            .id(customerPersistenceEntity.getId())
+            .name(customerPersistenceEntity.getName())
+            .residentNumber(customerPersistenceEntity.getResidentNumber())
+            .build();
     }
 }

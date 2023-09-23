@@ -34,7 +34,8 @@ public class Contract {
         }
     }
 
-    public float calculateContractBillAmount(MobilePlan mobilePlan, List<ProductDiscount> productDiscountList) {
+    public float calculateContractBillAmount(MobilePlan mobilePlan,
+        List<ProductDiscount> productDiscountList) {
 
         float contractBillAmount = mobilePlan.getPrice();
         float discountPrice = 0;
@@ -43,7 +44,7 @@ public class Contract {
             if ("price".equals(productDiscount.getType())) {
                 discountPrice += productDiscount.getPrice();
             } else if ("ratio".equals(productDiscount.getType())) {
-                discountPrice += mobilePlan.getPrice() * productDiscount.getRatio();
+                discountPrice += mobilePlan.getPrice() * (productDiscount.getRatio() / 100);
             }
         }
         contractBillAmount -= discountPrice;

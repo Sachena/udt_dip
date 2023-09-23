@@ -7,16 +7,17 @@ import org.springframework.stereotype.Component;
 @Component
 public class MobilePhonePersistenceMapper {
 
-    public MobilePhone fromPersistenceToDomain(MobilePhonePersitenceEntity mobilePhonePersitenceEntity) {
+    public MobilePhone fromPersistenceToDomain(
+        MobilePhonePersitenceEntity mobilePhonePersitenceEntity) {
 
         return MobilePhone.builder()
-                .id(mobilePhonePersitenceEntity.getId())
-                .manufacturer(mobilePhonePersitenceEntity.getManufacturer())
-                .model(mobilePhonePersitenceEntity.getModel())
-                .name(mobilePhonePersitenceEntity.getName())
-                .usim(mobilePhonePersitenceEntity.getUsim())
-                .description(mobilePhonePersitenceEntity.getDescription())
-                .price(mobilePhonePersitenceEntity.getPrice())
-                .build();
+            .id(mobilePhonePersitenceEntity.getId())
+            .manufacturer(mobilePhonePersitenceEntity.getManufacturer())
+            .model(mobilePhonePersitenceEntity.getModel())
+            .name(mobilePhonePersitenceEntity.getName())
+            .usim(mobilePhonePersitenceEntity.getUsim())
+            .description(mobilePhonePersitenceEntity.getDescription())
+            .price(mobilePhonePersitenceEntity.getPrice())
+            .build();
     }
 }

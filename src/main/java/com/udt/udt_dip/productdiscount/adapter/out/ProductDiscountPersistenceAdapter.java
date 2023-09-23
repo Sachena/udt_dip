@@ -19,6 +19,6 @@ public class ProductDiscountPersistenceAdapter implements ProductDiscountOutputP
     public List<ProductDiscount> retrieveAllByIdList(List<Long> idList) {
 
         return productDiscountPersistenceMapper.fromPersistenceListToDomainList(
-                productDiscountPersistenceRepository.findAllById(idList));
+            productDiscountPersistenceRepository.findAllById(idList));
     }
 }

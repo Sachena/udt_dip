@@ -16,7 +16,8 @@ public class CustomerPersistenceAdapter implements CustomerOutputPort {
 
     @Override
     public Customer retrieve(Long id) {
-        return customerPersistenceMapper.fromPersistenceToDomain(customerPersistenceRepository.findById(id)
+        return customerPersistenceMapper
+            .fromPersistenceToDomain(customerPersistenceRepository.findById(id)
                 .orElseThrow(() -> new NoCustomerException("고객 정보가 존재하지 않습니다.")));
     }
 }

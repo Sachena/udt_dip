@@ -36,19 +36,23 @@ public class ContractService implements ContractInputPort {
     private final ProductDiscountOutputPort productDiscountOutputPort;
 
     @Transactional(readOnly = true)
-    public RetrieveContractResponse retrieveContract(RetrieveContractRequest retrieveContractRequest) {
+    public RetrieveContractResponse retrieveContract(
+        RetrieveContractRequest retrieveContractRequest) {
 
         try {
 
-            Contract contract = contractOutputPort.retrieve(NumberUtils.toLong(retrieveContractRequest.getContractId()));
+            Contract contract = contractOutputPort
+                .retrieve(NumberUtils.toLong(retrieveContractRequest.getContractId()));
             Customer customer = customerOutputPort.retrieve(contract.getCustomerId());
             MobilePhone mobilePhone = mobilePhoneOutputPort.retrieve(contract.getMobilePhoneId());
             MobilePlan mobilePlan = mobilePlanOutputPort.retrieve(contract.getMobilePlanId());
-            List<ProductDiscount> productDiscountList = productDiscountOutputPort.retrieveAllByIdList(
-                    contract.getContractDiscountList().stream().map(ContractDiscount::getId).collect(Collectors.toList()));
+            List<ProductDiscount> productDiscountList = productDiscountOutputPort
+                .retrieveAllByIdList(
+                    contract.getContractDiscountList().stream().map(ContractDiscount::getId)
+                        .collect(Collectors.toList()));
 
             return new RetrieveContractResponse(contract, customer, mobilePhone, mobilePlan,
-                    contract.calculateContractBillAmount(mobilePlan, productDiscountList));
+                contract.calculateContractBillAmount(mobilePlan, productDiscountList));
 
         } catch (Exception e) {
             throw new RuntimeException("계약 정보를 확인할 수 없습니다.");
@@ -56,11 +60,13 @@ public class ContractService implements ContractInputPort {
     }
 
     @Transactional(readOnly = true)
-    public RetrieveContractInUseMobilePlan retrieveContractInUseMobilePlan(RetrieveContractRequest retrieveContractRequest) {
+    public RetrieveContractInUseMobilePlan retrieveContractInUseMobilePlan(
+        RetrieveContractRequest retrieveContractRequest) {
 
         try {
 
-            Contract contract = contractOutputPort.retrieve(NumberUtils.toLong(retrieveContractRequest.getContractId()));
+            Contract contract = contractOutputPort
+                .retrieve(NumberUtils.toLong(retrieveContractRequest.getContractId()));
             Customer customer = customerOutputPort.retrieve(contract.getCustomerId());
             MobilePlan mobilePlan = mobilePlanOutputPort.retrieve(contract.getMobilePlanId());
 
@@ -77,8 +83,10 @@ public class ContractService implements ContractInputPort {
         try {
 
             // 변경할 계약 정보 가져오기 (요금제 존재여부 검사)
-            Contract contract = contractOutputPort.retrieve(NumberUtils.toLong(updateMobilePlanRequest.getTargetContractId()));
-            MobilePlan mobilePlan = mobilePlanOutputPort.retrieve(NumberUtils.toLong(updateMobilePlanRequest.getTargetMobilePlanId()));
+            Contract contract = contractOutputPort
+                .retrieve(NumberUtils.toLong(updateMobilePlanRequest.getTargetContractId()));
+            MobilePlan mobilePlan = mobilePlanOutputPort
+                .retrieve(NumberUtils.toLong(updateMobilePlanRequest.getTargetMobilePlanId()));
 
             // 계약에서 요금제 정보 변경
             contract.updateInUseMobilePlan(mobilePlan.getId());

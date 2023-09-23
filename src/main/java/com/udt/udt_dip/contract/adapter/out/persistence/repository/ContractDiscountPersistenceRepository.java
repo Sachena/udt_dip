@@ -7,7 +7,8 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface ContractDiscountPersistenceRepository extends JpaRepository<ContractDiscountPersistenceEntity, Long> {
+public interface ContractDiscountPersistenceRepository extends
+    JpaRepository<ContractDiscountPersistenceEntity, Long> {
 
     List<ContractDiscountPersistenceEntity> findAllByContractId(Long contractId);
 }

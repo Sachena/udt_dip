@@ -1,18 +1,19 @@
 package com.udt.udt_dip.mobileplan.adapter.out.persistence;
 
-import com.udt.udt_dip.mobilephone.adapter.out.persistence.entity.MobilePhonePersitenceEntity;
+import com.udt.udt_dip.mobileplan.adapter.out.persistence.entity.MobilePlanPersistenceEntity;
 import com.udt.udt_dip.mobileplan.domain.model.MobilePlan;
 import org.springframework.stereotype.Component;
 
 @Component
 public class MobilePlanPersistenceMapper {
 
-    public MobilePlan fromPersistenceToDomain(MobilePhonePersitenceEntity mobilePhonePersitenceEntity) {
+    public MobilePlan fromPersistenceToDomain(
+        MobilePlanPersistenceEntity mobilePlanPersitenceEntity) {
         return MobilePlan.builder()
-                .id(mobilePhonePersitenceEntity.getId())
-                .name(mobilePhonePersitenceEntity.getName())
-                .description(mobilePhonePersitenceEntity.getDescription())
-                .price(mobilePhonePersitenceEntity.getPrice())
-                .build();
+            .id(mobilePlanPersitenceEntity.getId())
+            .name(mobilePlanPersitenceEntity.getName())
+            .description(mobilePlanPersitenceEntity.getDescription())
+            .price(Integer.parseInt(mobilePlanPersitenceEntity.getPrice()))
+            .build();
     }
 }

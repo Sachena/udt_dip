@@ -17,12 +17,13 @@ public class ContractController {
     private final ContractInputPort contractInputPort;
 
     @GetMapping("/v1/contract")
-    public RetrieveContractResponse retrieveContract(RetrieveContractRequest retrieveContractRequest){
+    public RetrieveContractResponse retrieveContract(
+        RetrieveContractRequest retrieveContractRequest) {
         return contractInputPort.retrieveContract(retrieveContractRequest);
     }
 
     @PostMapping("/v1/contract")
-    public void updateMobilePlan(UpdateMobilePlanRequest updateMobilePlanRequest){
+    public void updateMobilePlan(UpdateMobilePlanRequest updateMobilePlanRequest) {
         contractInputPort.updateMobilePlan(updateMobilePlanRequest);
     }
 
