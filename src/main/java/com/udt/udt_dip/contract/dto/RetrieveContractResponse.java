@@ -28,8 +28,12 @@ public class RetrieveContractResponse {
         this.phoneNumber = mobilePhone.getId();
         this.firstContractDate = contract.getFirstContractDate();
         this.contractChangeDatetime = contract.getContractChangeDatetime();
+        this.communicationExpense = communicationExpense;
         this.customerName = customer.getName();
+        this.mobilePhoneModel = mobilePhone.getModel();
         this.mobilePhoneName = mobilePhone.getName();
+        this.mobilePlanName = mobilePlan.getName();
+        this.mobilePlanPrice = String.valueOf(mobilePlan.getPrice());
 
     }
 }

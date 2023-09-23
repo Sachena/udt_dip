@@ -42,6 +42,7 @@ class ContractEntityServiceTest {
         assertEquals(retrieveContractResponse.getContractId(), "1");
         assertEquals(retrieveContractResponse.getCustomerName() , "테스터");
         assertEquals(retrieveContractResponse.getMobilePhoneName(),"갤럭시 Z 폴드3 512G");
+        assertEquals(retrieveContractResponse.getCommunicationExpense(), "63750.0");
 
 
     }

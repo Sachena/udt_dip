@@ -37,12 +37,11 @@ public class Contract {
 
         float contractBillAmount = mobilePlan.getPrice();
         float discountPrice = 0;
-
         for (ProductDiscount productDiscount : productDiscountList) {
             if ("price".equals(productDiscount.getType())) {
                 discountPrice += productDiscount.getPrice();
             } else if ("ratio".equals(productDiscount.getType())) {
-                discountPrice += mobilePlan.getPrice() * productDiscount.getRatio();
+                discountPrice += mobilePlan.getPrice() * (productDiscount.getRatio() / 100);
             }
         }
         contractBillAmount -= discountPrice;
